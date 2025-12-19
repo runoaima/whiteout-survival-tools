@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["gamecalc-api.onrender.com"]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 # Application definition
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework', # Django REST framework
     'accounts', # アカウント管理アプリ
     'tools',   # ツール管理アプリ
+    'corsheaders', # CORS headers
 ]
 
 MIDDLEWARE = [
@@ -50,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
