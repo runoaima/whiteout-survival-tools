@@ -7,21 +7,16 @@ export const api = axios.create({
   baseURL: API_BASE_URL,
 });
 
-// 認証トークン付きで呼ぶ例
+// 認証トークン付き POST
 export async function postWithAuth(url: string, data: any) {
   const token = await auth.currentUser?.getIdToken();
+  if (!token) {
+    throw new Error("Not authenticated");
+  }
+
   return api.post(url, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 }
-
-await fetch(`${API}/calc/`, {
-  method: "POST",
-  headers: {
-    "Authorization": `Bearer ${token}`,
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(payload),
-});
