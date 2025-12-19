@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2&txx7qn@=0u8-8@pumroeb0j0cuvy!+=5=#i4+%a&_l08w*k8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["gamecalc-api.onrender.com"]
 
@@ -133,3 +133,6 @@ REST_FRAMEWORK = {
         'accounts.authentication.FirebaseAuthentication',
     ]
 }
+
+import os
+SECRET_KEY = os.environ.get("SECRET_KEY")
