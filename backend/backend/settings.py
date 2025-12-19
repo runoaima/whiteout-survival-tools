@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2&txx7qn@=0u8-8@pumroeb0j0cuvy!+=5=#i4+%a&_l08w*k8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["gamecalc-api.onrender.com"]
 
 
 # Application definition
