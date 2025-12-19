@@ -1,0 +1,13 @@
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.item {
+    font-size: 14px;
+    color: #2563eb;
+    text-decoration: none;
+}

@@ -1,0 +1,49 @@
+.wrapper {
+  padding: 12px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.updated {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 14px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.toc {
+  background: #f9fafb;
+  border: 1px solid #e5e5e5;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.tocTitle {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.toc ul {
+  padding-left: 16px;
+}
+
+.toc li {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.toc a {
+  color: #2563eb;
+  text-decoration: none;
+}
