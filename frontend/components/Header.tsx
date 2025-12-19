@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "@/styles/Header.module.css";
 import HamburgerMenu from "./HamburgerMenu";
+import Link from "next/link";
 
 export default function Header({ title }: { title: string }) {
     const [open, setOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function Header({ title }: { title: string }) {
 
                 <div className={styles.right}>
                     <button className={styles.icon}>🔍</button>
-                    <button className={styles.icon}>👤</button>
+                    <Link href="/login" className={styles.icon}>👤</Link>
                     <button className={styles.icon} onClick={() => setOpen(true)}>
                         ☰
                     </button>
