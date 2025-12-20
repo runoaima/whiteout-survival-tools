@@ -95,3 +95,9 @@ export default function MyPage() {
         </main>
     );
 }
+
+export async function getServerSideProps() {
+    return {
+        props: {},
+    };
+}
