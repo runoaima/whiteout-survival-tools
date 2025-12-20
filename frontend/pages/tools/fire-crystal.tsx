@@ -16,7 +16,6 @@ import PageHero from "@/components/PageHero";
 import CategoryTextNav from "@/components/CategoryTextNav";
 import PageIntro from "@/components/PageIntro";
 import { saveToolCalculation } from "@/lib/saveToolCalculation";
-import { getAuth } from "firebase/auth";
 
 
 
