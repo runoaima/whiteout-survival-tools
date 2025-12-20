@@ -287,7 +287,7 @@ export default function FireCrystalTool() {
                     ))}
 
                     {/* 結果テーブル */}
-                    <div className={Style.resultTableContainer}>
+                    <div className={Style.resultTableScale}>
                         <table className={Style.resultTable}>
                             <thead>
                                 <tr>
@@ -324,9 +324,6 @@ export default function FireCrystalTool() {
                                 </tr>
                             </tbody>
                         </table>
-                        <button>計算結果を保存</button>
-
-
                     </div>
                 </section>
             </main >

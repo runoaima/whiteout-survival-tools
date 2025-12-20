@@ -52,10 +52,10 @@
 }
 
 /* ===============================
-   結果テーブル（主役）
+   結果テーブル（コンテナ）
 ================================ */
 .resultTableContainer {
-    margin-top: 16px; /* ← 入力との距離を詰める */
+    margin-top: 16px;
     background: #ffffff;
     border-radius: 14px;
     padding: 14px 12px 18px;
@@ -64,9 +64,25 @@
         0 12px 32px rgba(15, 23, 42, 0.08);
 }
 
+/* ===============================
+   表スケーリング用ラッパー（重要）
+================================ */
+.resultTableScale {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* ← 左寄り防止 */
+    overflow: hidden;
+}
+
+/* ===============================
+   結果テーブル本体
+================================ */
 .resultTable {
     width: 100%;
     border-collapse: collapse;
+    transform: scale(1);
+    transform-origin: top center;
 }
 
 /* ヘッダー */
@@ -97,18 +113,14 @@
     color: #0f172a;
 }
 
-/* 行ホバー（安心感） */
+/* 行ホバー */
 .resultTable tbody tr:hover {
     background: #f8fafc;
 }
 
-/* 合計行（報酬） */
+/* 合計行 */
 .resultTable tbody tr:last-child {
-    background: linear-gradient(
-        90deg,
-        #eef2ff,
-        #e0e7ff
-    );
+    background: linear-gradient(90deg, #eef2ff, #e0e7ff);
 }
 
 .resultTable tbody tr:last-child td {
@@ -118,7 +130,7 @@
 }
 
 /* ===============================
-   保存ボタン（習慣化）
+   保存ボタン
 ================================ */
 .resultTableContainer button {
     display: block;
@@ -127,11 +139,7 @@
     font-size: 14px;
     font-weight: 700;
     color: #ffffff;
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #1d4ed8
-    );
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
     border: none;
     border-radius: 999px;
     cursor: pointer;
@@ -152,7 +160,16 @@
 }
 
 /* ===============================
-   スマホ最適化（一画面志向）
+   タブレット（表を少し縮小）
+================================ */
+@media (max-width: 1024px) {
+    .resultTable {
+        transform: scale(0.92);
+    }
+}
+
+/* ===============================
+   スマホ（表をしっかり縮小）
 ================================ */
 @media (max-width: 768px) {
 
@@ -183,6 +200,10 @@
         margin-top: 12px;
     }
 
+    .resultTable {
+        transform: scale(0.85);
+    }
+
     .resultTable thead th {
         font-size: 11px;
         padding: 6px 4px;
@@ -198,5 +219,14 @@
         margin-top: 14px;
         padding: 12px;
         font-size: 14px;
+    }
+}
+
+/* ===============================
+   小型スマホ（最小）
+================================ */
+@media (max-width: 390px) {
+    .resultTable {
+        transform: scale(0.8);
     }
 }
