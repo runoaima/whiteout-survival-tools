@@ -1,48 +1,72 @@
-import { auth } from "@/lib/firebase";
+import { useState } from "react";
+import Header from "@/components/Header";
+import styles from "@/styles/Login.module.css";
 import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+  loginWithEmail,
+  loginWithGoogle,
+  loginWithApple,
+} from "@/lib/auth";
 
 export default function LoginPage() {
-  const [user, setUser] = useState<any>(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    return auth.onAuthStateChanged((u) => {
-      setUser(u);
-    });
-  }, []);
-
-  const loginWithGoogle = async () => {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-    router.push("/");
-  };
-
-  const logout = async () => {
-    await signOut(auth);
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
-    <div style={{ padding: 40 }}>
-      <h1>ログイン</h1>
+    <>
+      <Header title="ログイン" />
 
-      {!user ? (
-        <>
-          <button onClick={loginWithGoogle}>
-            Googleでログイン
+      <main className={styles.container}>
+        <h1 className={styles.title}>ログイン</h1>
+
+        <label className={styles.label}>メールアドレス</label>
+        <input
+          className={styles.input}
+          placeholder="あなたのメールアドレス"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <label className={styles.label}>パスワード</label>
+        <input
+          type="password"
+          className={styles.input}
+          placeholder="あなたのパスワード"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <a className={styles.forgot}>パスワードを忘れた方はこちら</a>
+
+        <button
+          className={styles.loginButton}
+          onClick={() => loginWithEmail(email, password)}
+        >
+          ログインする
+        </button>
+
+        <div className={styles.or}>または</div>
+
+        <button
+          className={`${styles.socialButton} ${styles.apple}`}
+          onClick={loginWithApple}
+        >
+           Appleでサインイン
+        </button>
+
+        <button
+          className={`${styles.socialButton} ${styles.google}`}
+          onClick={loginWithGoogle}
+        >
+          Googleでログイン
+        </button>
+
+        <div className={styles.registerBox}>
+          <p>アカウントをお持ちでない方</p>
+          <button className={styles.registerButton}>
+            新規会員登録
           </button>
-        </>
-      ) : (
-        <>
-          <p>ログイン中：{user.email}</p>
-          <button onClick={logout}>ログアウト</button>
-        </>
-      )}
-    </div>
+        </div>
+      </main>
+    </>
   );
 }

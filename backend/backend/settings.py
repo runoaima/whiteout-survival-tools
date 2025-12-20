@@ -136,3 +136,5 @@ REST_FRAMEWORK = {
 
 import os
 SECRET_KEY = os.environ.get("SECRET_KEY")
+
+CORS_ALLOW_ALL_ORIGINS = True

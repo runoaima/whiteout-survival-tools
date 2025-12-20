@@ -1,0 +1,80 @@
+.container {
+    padding: 16px;
+}
+
+.title {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 24px;
+}
+
+.label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.forgot {
+    font-size: 12px;
+    color: #2aa876;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.loginButton {
+    width: 100%;
+    padding: 14px;
+    background: #2aa876;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.or {
+    text-align: center;
+    margin: 20px 0;
+    color: #999;
+}
+
+.socialButton {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 15px;
+    margin-bottom: 12px;
+    border: none;
+}
+
+.apple {
+    background: #000;
+    color: #fff;
+}
+
+.google {
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.registerBox {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.registerButton {
+    margin-top: 8px;
+    padding: 12px;
+    width: 100%;
+    border: 2px solid #2aa876;
+    background: #fff;
+    color: #2aa876;
+    border-radius: 6px;
+}

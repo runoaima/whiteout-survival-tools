@@ -1,10 +1,22 @@
-import { useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "@/lib/firebase"; // ← ここが重要
 import styles from "@/styles/Header.module.css";
 import HamburgerMenu from "./HamburgerMenu";
-import Link from "next/link";
 
 export default function Header({ title }: { title: string }) {
     const [open, setOpen] = useState(false);
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+        return () => unsubscribe();
+    }, []);
 
     return (
         <>
@@ -13,8 +25,18 @@ export default function Header({ title }: { title: string }) {
 
                 <div className={styles.right}>
                     <button className={styles.icon}>🔍</button>
-                    <Link href="/login" className={styles.icon}>👤</Link>
-                    <button className={styles.icon} onClick={() => setOpen(true)}>
+
+                    <Link
+                        href={user ? "/mypage" : "/login"}
+                        className={styles.icon}
+                    >
+                        👤
+                    </Link>
+
+                    <button
+                        className={styles.icon}
+                        onClick={() => setOpen(true)}
+                    >
                         ☰
                     </button>
                 </div>

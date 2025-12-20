@@ -1,0 +1,202 @@
+/* ===============================
+   全体設計（視線安定）
+================================ */
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 16px 56px;
+}
+
+.section h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #0f172a;
+}
+
+.section p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+/* ===============================
+   入力エリア（密度最適化）
+================================ */
+.section strong {
+    display: inline-block;
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: #1e293b;
+}
+
+.section select {
+    margin: 4px 4px 6px 0;
+    padding: 5px 8px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+}
+
+.section select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.section hr {
+    border: none;
+    border-top: 1px dashed #e5e7eb;
+    margin: 10px 0;
+}
+
+/* ===============================
+   結果テーブル（主役）
+================================ */
+.resultTableContainer {
+    margin-top: 16px; /* ← 入力との距離を詰める */
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 14px 12px 18px;
+    box-shadow:
+        0 4px 12px rgba(15, 23, 42, 0.06),
+        0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.resultTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* ヘッダー */
+.resultTable thead th {
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 6px;
+    border-bottom: 2px solid #e2e8f0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* 本文 */
+.resultTable tbody td {
+    font-size: 13px;
+    padding: 7px 6px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* 施設名列 */
+.resultTable tbody td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* 行ホバー（安心感） */
+.resultTable tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* 合計行（報酬） */
+.resultTable tbody tr:last-child {
+    background: linear-gradient(
+        90deg,
+        #eef2ff,
+        #e0e7ff
+    );
+}
+
+.resultTable tbody tr:last-child td {
+    font-weight: 700;
+    color: #1e3a8a;
+    border-bottom: none;
+}
+
+/* ===============================
+   保存ボタン（習慣化）
+================================ */
+.resultTableContainer button {
+    display: block;
+    margin: 16px auto 0;
+    padding: 12px 26px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.resultTableContainer button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.resultTableContainer button:active {
+    transform: translateY(0);
+    opacity: 0.9;
+}
+
+/* ===============================
+   スマホ最適化（一画面志向）
+================================ */
+@media (max-width: 768px) {
+
+    .section {
+        padding: 20px 12px 40px;
+    }
+
+    .section h1 {
+        font-size: 22px;
+    }
+
+    .section p {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .section select {
+        padding: 4px 6px;
+        font-size: 12px;
+    }
+
+    .section hr {
+        margin: 8px 0;
+    }
+
+    .resultTableContainer {
+        padding: 12px 8px 14px;
+        margin-top: 12px;
+    }
+
+    .resultTable thead th {
+        font-size: 11px;
+        padding: 6px 4px;
+    }
+
+    .resultTable tbody td {
+        font-size: 12px;
+        padding: 6px 4px;
+    }
+
+    .resultTableContainer button {
+        width: 100%;
+        margin-top: 14px;
+        padding: 12px;
+        font-size: 14px;
+    }
+}

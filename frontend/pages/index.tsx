@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import CategoryTextNav from "@/components/CategoryTextNav";
 import PageIntro from "@/components/PageIntro";
+import Footer from "@/components/Footer";
 
 
 export default function Home() {
@@ -81,7 +82,7 @@ export default function Home() {
                     <h2 className={styles.sectionTitle}>素材計算ツール</h2>
                     <CategoryGrid
                         items={[
-                            { label: "火晶計算ツール", href: "/tools/fire-crystals", image: "/images/materials/fire_crystal/fire_crystal.png" },
+                            { label: "火晶計算ツール", href: "/tools/fire-crystal", image: "/images/materials/fire_crystal/fire_crystal.png" },
                             { label: "領主装備計算ツール", href: "/tools/chief-gear", image: "/images/materials/chief_gear/chief_gear.png" },
                             { label: "領主宝石計算ツール", href: "/tools/chief-charm", image: "/images/materials/chief_charm/chief_charm.png" },
                             { label: "英雄装備計算ツール", href: "/tools/hero-gear", image: "/images/materials/hero_gear/hero_gear.png" },
@@ -125,6 +126,8 @@ export default function Home() {
 
                 </section>
             </main >
+
+            <Footer />
         </>
     );
 }
