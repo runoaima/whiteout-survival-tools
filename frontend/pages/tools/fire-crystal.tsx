@@ -33,6 +33,10 @@ export default function FireCrystalTool() {
     const [bulkStart, setBulkStart] = useState<number>(0);
     const [bulkEnd, setBulkEnd] = useState<number>(0);
 
+    type MaterialTable = Record<number, string[]>;
+
+
+
     function applyBulkLevels(start: number, end: number) {
         setLevels(prev =>
             prev.map(() => ({
@@ -51,19 +55,27 @@ export default function FireCrystalTool() {
         );
     }
 
-    function getMaterialTable(name: string) {
-        switch (name) {
-            case "大溶鉱炉": return blastMaterial;
-            case "大使館": return anembassyMaterial;
-            case "盾兵舎":
-            case "槍兵舎":
-            case "弓兵舎": return barracksMaterial;
-            case "司令部": return commandMaterial;
-            case "軍医所": return militaryMaterial;
-            case "戦争学園": return academyMaterial;
-            default: return {};
-        }
+    function getMaterialTable(name: string): MaterialTable {
+    switch (name) {
+        case "大溶鉱炉":
+            return blastMaterial;
+        case "大使館":
+            return anembassyMaterial;
+        case "盾兵舎":
+        case "槍兵舎":
+        case "弓兵舎":
+            return barracksMaterial;
+        case "司令部":
+            return commandMaterial;
+        case "軍医所":
+            return militaryMaterial;
+        case "戦争学園":
+            return academyMaterial;
+        default:
+            return {};
     }
+}
+
 
     // 火晶・製錬火晶（常に「個」）
     function formatCrystal(value: number) {
