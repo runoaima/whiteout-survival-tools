@@ -1,12 +1,13 @@
-let firebaseAuth: any = null;
+import type { Auth } from "firebase/auth";
+
+let firebaseAuth: Auth | null = null;
 
 /**
  * Firebase Auth をクライアントでのみ初期化して返す
  */
-export async function getFirebaseAuth() {
+export async function getFirebaseAuth(): Promise<Auth> {
   if (firebaseAuth) return firebaseAuth;
 
-  // 🔴 ここで初めて firebase を読む
   const { initializeApp, getApps, getApp } = await import("firebase/app");
   const { getAuth } = await import("firebase/auth");
 
