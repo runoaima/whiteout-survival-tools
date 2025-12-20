@@ -1,5 +1,5 @@
 import axios from "axios";
-import { auth } from "./firebase";
+import { getFirebaseAuth } from "./firebase";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -12,7 +12,9 @@ export async function postWithAuth<T extends object>(
   url: string,
   data: T
 ) {
+  const auth = await getFirebaseAuth();
   const token = await auth.currentUser?.getIdToken();
+
   if (!token) {
     throw new Error("Not authenticated");
   }

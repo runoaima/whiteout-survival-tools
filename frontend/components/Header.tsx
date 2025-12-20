@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "@/styles/Header.module.css";
 import HamburgerMenu from "./HamburgerMenu";
-import { auth } from "@/lib/firebase";
+import { getFirebaseAuth } from "@/lib/firebase";
+
 
 export default function Header({ title }: { title: string }) {
     const [open, setOpen] = useState(false);
@@ -13,17 +14,20 @@ export default function Header({ title }: { title: string }) {
     useEffect(() => {
         let unsubscribe: (() => void) | undefined;
 
-        // 🔴 firebase/auth をここで初めて読む
-        import("firebase/auth").then(({ onAuthStateChanged }) => {
-            unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-                setUser(currentUser);
+        (async () => {
+            const auth = await getFirebaseAuth();
+            const { onAuthStateChanged } = await import("firebase/auth");
+
+            unsubscribe = onAuthStateChanged(auth, (user) => {
+                setUser(user);
             });
-        });
+        })();
 
         return () => {
             if (unsubscribe) unsubscribe();
         };
     }, []);
+
 
     return (
         <>

@@ -1,10 +1,8 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { auth } from "@/lib/firebase";
+import { getFirebaseAuth } from "@/lib/firebase";
 
-const Header = dynamic(() => import("@/components/Header"), {
-    ssr: false,
-});
+const Header = dynamic(() => import("@/components/Header"), { ssr: false });
 
 type SavedCalculation = {
     id: number;
@@ -18,10 +16,10 @@ type SavedCalculation = {
 export default function MyPage() {
     const [items, setItems] = useState<SavedCalculation[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
 
     useEffect(() => {
-        async function fetchData() {
+        (async () => {
+            const auth = await getFirebaseAuth();
             const user = auth.currentUser;
             if (!user) return;
 
@@ -32,11 +30,11 @@ export default function MyPage() {
                     headers: { Authorization: `Bearer ${token}` },
                 }
             );
+
             const data = await res.json();
             setItems(data.results || []);
             setLoading(false);
-        }
-        fetchData();
+        })();
     }, []);
 
     return (
