@@ -14,7 +14,6 @@ import { useState, useEffect } from "react";
 import PageHero from "@/components/PageHero";
 import CategoryTextNav from "@/components/CategoryTextNav";
 import PageIntro from "@/components/PageIntro";
-import { saveToolCalculation } from "@/lib/saveToolCalculation";
 import dynamic from "next/dynamic";
 const Header = dynamic(() => import("@/components/Header"), {
     ssr: false,
@@ -325,33 +324,7 @@ export default function FireCrystalTool() {
                                 </tr>
                             </tbody>
                         </table>
-                        <button
-                            onClick={async () => {
-                                try {
-                                    await saveToolCalculation(
-                                        "fire_crystal",
-                                        "火晶計算",
-                                        {
-                                            levels,
-                                        },
-                                        {
-                                            perSet: totalsPerSet,
-                                            total: totalAll,
-                                        }
-                                    );
-                                    alert("計算結果を保存しました");
-                                } catch (e) {
-                                    if (e instanceof Error && e.message === "NOT_LOGGED_IN") {
-                                        alert("保存するにはログインが必要です");
-                                    } else {
-                                        alert("保存に失敗しました");
-                                    }
-                                }
-
-                            }}
-                        >
-                            計算結果を保存
-                        </button>
+                        <button>計算結果を保存</button>
 
 
                     </div>
