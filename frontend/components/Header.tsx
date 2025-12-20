@@ -2,20 +2,27 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { onAuthStateChanged, User } from "firebase/auth";
-import { auth } from "@/lib/firebase"; // ← ここが重要
 import styles from "@/styles/Header.module.css";
 import HamburgerMenu from "./HamburgerMenu";
+import { auth } from "@/lib/firebase";
 
 export default function Header({ title }: { title: string }) {
     const [open, setOpen] = useState(false);
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<unknown>(null);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+        let unsubscribe: (() => void) | undefined;
+
+        // 🔴 firebase/auth をここで初めて読む
+        import("firebase/auth").then(({ onAuthStateChanged }) => {
+            unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+                setUser(currentUser);
+            });
         });
-        return () => unsubscribe();
+
+        return () => {
+            if (unsubscribe) unsubscribe();
+        };
     }, []);
 
     return (
