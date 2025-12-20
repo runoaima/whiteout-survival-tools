@@ -3,9 +3,10 @@ import { getAuth } from "firebase/auth";
 export async function saveToolCalculation(
     tool: string,
     title: string,
-    input: any,
-    result: any
+    input: Record<string, unknown>,
+    result: Record<string, unknown>
 ) {
+
     const auth = getAuth();
     const user = auth.currentUser;
 

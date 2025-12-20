@@ -56,25 +56,25 @@ export default function FireCrystalTool() {
     }
 
     function getMaterialTable(name: string): MaterialTable {
-    switch (name) {
-        case "大溶鉱炉":
-            return blastMaterial;
-        case "大使館":
-            return anembassyMaterial;
-        case "盾兵舎":
-        case "槍兵舎":
-        case "弓兵舎":
-            return barracksMaterial;
-        case "司令部":
-            return commandMaterial;
-        case "軍医所":
-            return militaryMaterial;
-        case "戦争学園":
-            return academyMaterial;
-        default:
-            return {};
+        switch (name) {
+            case "大溶鉱炉":
+                return blastMaterial;
+            case "大使館":
+                return anembassyMaterial;
+            case "盾兵舎":
+            case "槍兵舎":
+            case "弓兵舎":
+                return barracksMaterial;
+            case "司令部":
+                return commandMaterial;
+            case "軍医所":
+                return militaryMaterial;
+            case "戦争学園":
+                return academyMaterial;
+            default:
+                return {};
+        }
     }
-}
 
 
     // 火晶・製錬火晶（常に「個」）
@@ -158,10 +158,13 @@ export default function FireCrystalTool() {
         for (let l = lv.start; l < lv.end; l++) {
             table[l]?.forEach((entry: string) => {
                 const [name, val] = entry.split("×");
+                const key = name as keyof (typeof totalsPerSet)[number];
                 const num = Number(val);
-                totalsPerSet[i][name] += num;
-                totalAll[name] += num;
+
+                totalsPerSet[i][key] += num;
+                totalAll[key] += num;
             });
+
         }
     });
 
@@ -294,20 +297,28 @@ export default function FireCrystalTool() {
                                 {setNames.map((name, i) => (
                                     <tr key={i}>
                                         <td>{name}</td>
-                                        {materialKeys.map(k => (
-                                            <td key={k} data-label={k}>{formatCell(k, totalsPerSet[i][k])}</td>
-                                        ))}
+                                        {materialKeys.map(k => {
+                                            const key = k as keyof (typeof totalsPerSet)[number];
+                                            return (
+                                                <td key={k} data-label={k}>
+                                                    {formatCell(k, totalsPerSet[i][key])}
+                                                </td>
+                                            );
+                                        })}
+
                                     </tr>
                                 ))}
                                 <tr>
                                     <td><strong>合計</strong></td>
-                                    {materialKeys.map(k => (
-                                        <td key={k} data-label={k}>
-                                            <strong>{formatCell(k, totalAll[k])}</strong>
-                                        </td>
+                                    {materialKeys.map(k => {
+                                        const key = k as keyof typeof totalAll;
+                                        return (
+                                            <td key={k} data-label={k}>
+                                                <strong>{formatCell(k, totalAll[key])}</strong>
+                                            </td>
+                                        );
+                                    })}
 
-
-                                    ))}
                                 </tr>
                             </tbody>
                         </table>
@@ -326,13 +337,14 @@ export default function FireCrystalTool() {
                                         }
                                     );
                                     alert("計算結果を保存しました");
-                                } catch (e: any) {
-                                    if (e.message === "NOT_LOGGED_IN") {
+                                } catch (e) {
+                                    if (e instanceof Error && e.message === "NOT_LOGGED_IN") {
                                         alert("保存するにはログインが必要です");
                                     } else {
                                         alert("保存に失敗しました");
                                     }
                                 }
+
                             }}
                         >
                             計算結果を保存

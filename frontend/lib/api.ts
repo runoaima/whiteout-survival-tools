@@ -8,7 +8,10 @@ export const api = axios.create({
 });
 
 // 認証トークン付き POST
-export async function postWithAuth(url: string, data: any) {
+export async function postWithAuth<T extends object>(
+  url: string,
+  data: T
+) {
   const token = await auth.currentUser?.getIdToken();
   if (!token) {
     throw new Error("Not authenticated");

@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { auth } from "@/lib/firebase";
-import { getAuth } from "firebase/auth";
-
 
 type SavedCalculation = {
     id: number;
     tool: string;
     title: string;
     created_at: string;
-    input: any;
-    result: any;
+    input: unknown;
+    result: unknown;
 };
+
 
 export default function MyPage() {
     const [items, setItems] = useState<SavedCalculation[]>([]);
