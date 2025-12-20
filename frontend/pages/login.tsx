@@ -1,11 +1,15 @@
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import Header from "@/components/Header";
 import styles from "@/styles/Login.module.css";
 import {
   loginWithEmail,
   loginWithGoogle,
   loginWithApple,
 } from "@/lib/auth";
+
+const Header = dynamic(() => import("@/components/Header"), {
+  ssr: false,
+});
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -21,7 +25,6 @@ export default function LoginPage() {
         <label className={styles.label}>メールアドレス</label>
         <input
           className={styles.input}
-          placeholder="あなたのメールアドレス"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -30,49 +33,20 @@ export default function LoginPage() {
         <input
           type="password"
           className={styles.input}
-          placeholder="あなたのパスワード"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
-        <a className={styles.forgot}>パスワードを忘れた方はこちら</a>
 
         <button
           className={styles.loginButton}
           onClick={() => loginWithEmail(email, password)}
         >
-          ログインする
+          ログイン
         </button>
 
-        <div className={styles.or}>または</div>
-
-        <button
-          className={`${styles.socialButton} ${styles.apple}`}
-          onClick={loginWithApple}
-        >
-           Appleでサインイン
-        </button>
-
-        <button
-          className={`${styles.socialButton} ${styles.google}`}
-          onClick={loginWithGoogle}
-        >
-          Googleでログイン
-        </button>
-
-        <div className={styles.registerBox}>
-          <p>アカウントをお持ちでない方</p>
-          <button className={styles.registerButton}>
-            新規会員登録
-          </button>
-        </div>
+        <button onClick={loginWithGoogle}>Google</button>
+        <button onClick={loginWithApple}>Apple</button>
       </main>
     </>
   );
-}
-
-export async function getServerSideProps() {
-    return {
-        props: {},
-    };
 }

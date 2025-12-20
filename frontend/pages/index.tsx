@@ -1,27 +1,26 @@
+import dynamic from "next/dynamic";
 import SearchBar from "@/components/SearchBar";
 import CategoryGrid from "@/components/CategoryGrid";
 import styles from "@/styles/Home.module.css";
-
-import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import CategoryTextNav from "@/components/CategoryTextNav";
 import PageIntro from "@/components/PageIntro";
 import Footer from "@/components/Footer";
 
+const Header = dynamic(() => import("@/components/Header"), {
+    ssr: false,
+});
 
 export default function Home() {
     return (
         <>
-            {/* 固定ヘッダー */}
             <Header title="Whiteout Survival" />
 
-            {/* ヘッダー下の画像＋タイトル */}
             <PageHero
                 title="Whiteout Survival 総合攻略"
                 imageUrl="/images/home-hero.png"
             />
 
-            {/* テキストカテゴリ（軽量ナビ） */}
             <CategoryTextNav
                 categories={[
                     { label: "初心者ガイド", href: "/guides/beginner" },
@@ -35,7 +34,7 @@ export default function Home() {
             <PageIntro
                 title="Whiteout Survival 総合攻略トップ"
                 updatedAt="2025年12月19日"
-                description="Whiteout Survivalの攻略情報と各種計算ツールをまとめた総合サイトです。初心者向けガイドから素材・時間計算ツールまで網羅しています。"
+                description="Whiteout Survivalの攻略情報と各種計算ツールをまとめた総合サイトです。"
                 toc={[
                     { label: "おすすめコンテンツ", targetId: "recommend" },
                     { label: "初心者ガイド", targetId: "beginner" },
@@ -45,10 +44,6 @@ export default function Home() {
                 ]}
             />
 
-
-
-
-            {/* ここから既存コンテンツ */}
             <main className={styles.container}>
                 <SearchBar />
 
@@ -94,47 +89,11 @@ export default function Home() {
                             { label: "ペット材料計算ツール", href: "/tools/pet-materials", image: "/images/materials/tool-pet-materials.png" },
                             { label: "曙光同盟素材計算ツール", href: "/tools/dawn-alliance-materials", image: "/images/materials/tool-dawn-alliance-materials.png" },
                         ]}
-
                     />
                 </section>
-
-                <section id="time" className={styles.section}>
-                    <h2 className={styles.sectionTitle}>時間計算ツール</h2>
-                    <CategoryGrid
-                        items={[
-                            { label: "ガイド", href: "/guides" },
-                            { label: "マップ", href: "/guides/map" },
-                            { label: "ミッション", href: "/guides/missions" },
-                            { label: "データ", href: "/guides/data" },
-                            { label: "アイテム", href: "/guides/items" },
-                            { label: "その他", href: "/guides/other" },
-                        ]}
-                    />
-                </section>
-                <section id="events" className={styles.section}>
-                    <h2 className={styles.sectionTitle}>イベント攻略</h2>
-                    <CategoryGrid
-                        items={[
-                            { label: "ガイド", href: "/guides" },
-                            { label: "マップ", href: "/guides/map" },
-                            { label: "ミッション", href: "/guides/missions" },
-                            { label: "データ", href: "/guides/data" },
-                            { label: "アイテム", href: "/guides/items" },
-                            { label: "その他", href: "/guides/other" },
-                        ]}
-                    />
-
-                </section>
-            </main >
+            </main>
 
             <Footer />
         </>
     );
 }
-
-export async function getServerSideProps() {
-    return {
-        props: {},
-    };
-}
-

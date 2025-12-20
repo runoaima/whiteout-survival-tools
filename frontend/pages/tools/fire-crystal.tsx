@@ -11,11 +11,15 @@ import {
 } from "@/data/fireCrystalData";
 import Style from "@/styles/tools/fire-crystal.module.css";
 import { useState, useEffect } from "react";
-import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import CategoryTextNav from "@/components/CategoryTextNav";
 import PageIntro from "@/components/PageIntro";
 import { saveToolCalculation } from "@/lib/saveToolCalculation";
+import dynamic from "next/dynamic";
+const Header = dynamic(() => import("@/components/Header"), {
+    ssr: false,
+});
+
 
 
 
