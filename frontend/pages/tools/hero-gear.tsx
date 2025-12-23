@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import styles from "@/styles/tools/hero-gear.module.css";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
@@ -15,6 +15,9 @@ import {
     MaterialKey,
 } from "@/data/heroGearData";
 
+/* ===============================
+   型定義
+=============================== */
 type GearState = {
     start: number;
     end: number;
@@ -23,12 +26,17 @@ type GearState = {
 };
 
 export default function HeroGearEnhance() {
+    /* ===============================
+       State
+    =============================== */
     const [gears, setGears] = useState<GearState[]>([
-        { start: 0, end: ENHANCE_MAX_LEVEL, refineStart: 0, refineEnd: REFINE_MAX_LEVEL },
+        {
+            start: 0,
+            end: ENHANCE_MAX_LEVEL,
+            refineStart: 0,
+            refineEnd: REFINE_MAX_LEVEL,
+        },
     ]);
-
-    const [resultHtml, setResultHtml] = useState("");
-    const [showSave, setShowSave] = useState(false);
 
     /* ===============================
        装備追加・削除
@@ -36,7 +44,12 @@ export default function HeroGearEnhance() {
     const addGear = () => {
         setGears(prev => [
             ...prev,
-            { start: 0, end: ENHANCE_MAX_LEVEL, refineStart: 0, refineEnd: REFINE_MAX_LEVEL },
+            {
+                start: 0,
+                end: ENHANCE_MAX_LEVEL,
+                refineStart: 0,
+                refineEnd: REFINE_MAX_LEVEL,
+            },
         ]);
     };
 
@@ -60,16 +73,19 @@ export default function HeroGearEnhance() {
     };
 
     /* ===============================
-       計算処理
+       計算処理（useMemo）
+       ※ useEffect + setState は使わない
     =============================== */
-    useEffect(() => {
-        const totalsPerSet = gears.map(() => {
-            const obj: Record<MaterialKey, number> = {} as any;
+    const { resultHtml, hasMaterial } = useMemo(() => {
+        // 装備ごとの合計
+        const totalsPerSet: Record<MaterialKey, number>[] = gears.map(() => {
+            const obj: Record<MaterialKey, number> = {} as Record<MaterialKey, number>;
             materialKeys.forEach(k => (obj[k] = 0));
             return obj;
         });
 
-        const totalAll: Record<MaterialKey, number> = {} as any;
+        // 全体合計
+        const totalAll: Record<MaterialKey, number> = {} as Record<MaterialKey, number>;
         materialKeys.forEach(k => (totalAll[k] = 0));
 
         let hasMaterial = false;
@@ -81,6 +97,7 @@ export default function HeroGearEnhance() {
                     const [name, v] = e.split("×");
                     const n = Number(v);
                     const key = name as MaterialKey;
+
                     totalsPerSet[idx][key] += n;
                     totalAll[key] += n;
                     if (n > 0) hasMaterial = true;
@@ -93,6 +110,7 @@ export default function HeroGearEnhance() {
                     const [name, v] = e.split("×");
                     const n = Number(v);
                     const key = name as MaterialKey;
+
                     totalsPerSet[idx][key] += n;
                     totalAll[key] += n;
                     if (n > 0) hasMaterial = true;
@@ -102,21 +120,26 @@ export default function HeroGearEnhance() {
 
         /* HTML生成 */
         let html = `<table class="${styles.table}"><tr><th>装備</th>`;
-        materialKeys.forEach(k => (html += `<th>${k}</th>`));
+        materialKeys.forEach(k => {
+            html += `<th>${k}</th>`;
+        });
         html += `</tr>`;
 
         totalsPerSet.forEach((set, i) => {
             html += `<tr><td>装備${i + 1}</td>`;
-            materialKeys.forEach(k => (html += `<td>${set[k]}</td>`));
+            materialKeys.forEach(k => {
+                html += `<td>${set[k]}</td>`;
+            });
             html += `</tr>`;
         });
 
         html += `<tr class="${styles.totalRow}"><td>合計</td>`;
-        materialKeys.forEach(k => (html += `<td>${totalAll[k]}</td>`));
+        materialKeys.forEach(k => {
+            html += `<td>${totalAll[k]}</td>`;
+        });
         html += `</tr></table>`;
 
-        setResultHtml(html);
-        setShowSave(hasMaterial);
+        return { resultHtml: html, hasMaterial };
     }, [gears]);
 
     /* ===============================
@@ -125,16 +148,23 @@ export default function HeroGearEnhance() {
     return (
         <>
             <Header title="Whiteout Survival" />
-            <PageHero title="領主宝石 計算ツール" imageUrl="/images/home-hero.png" />
-            <CategoryTextNav categories={[
-                { label: "トップ", href: "/" },
-                { label: "素材計算", href: "/tools/materials" },
-                { label: "領主宝石", href: "/tools/hero-gem" },
-            ]} />
+            <PageHero
+                title="英雄装備 計算ツール"
+                imageUrl="/images/home-hero.png"
+            />
+
+            <CategoryTextNav
+                categories={[
+                    { label: "トップ", href: "/" },
+                    { label: "素材計算", href: "/tools/materials" },
+                    { label: "英雄装備", href: "/tools/hero-gear" },
+                ]}
+            />
+
             <PageIntro
                 title="英雄装備計算ツール"
                 updatedAt="2025年12月19日"
-                description="英雄装備のランク差分から必要素材を自動計算します。"
+                description="英雄装備の強化・製錬レベル差分から必要素材を自動計算します。"
                 toc={[
                     { label: "計算ツール", targetId: "tool" },
                     { label: "使い方", targetId: "usage" },
@@ -142,7 +172,9 @@ export default function HeroGearEnhance() {
             />
 
             <main className={styles.section}>
-                <div id="tool" className={styles.sectionTitle}>英雄装備計算ツール</div>
+                <div id="tool" className={styles.sectionTitle}>
+                    英雄装備計算ツール
+                </div>
 
                 {gears.map((g, i) => (
                     <div key={i} className={styles.gearBox}>
@@ -162,7 +194,7 @@ export default function HeroGearEnhance() {
                         </label>
 
                         <label>
-                            希望Lv：+{g.end}
+                            希望Lv：{g.end}
                             <input
                                 type="range"
                                 min={0}
@@ -208,21 +240,28 @@ export default function HeroGearEnhance() {
                 </div>
 
                 <div className={styles.resultTitle}>必要素材一覧</div>
-                <div
-                    className={styles.result}
-                    dangerouslySetInnerHTML={{ __html: resultHtml }}
-                />
-                <br />
+
+                {hasMaterial ? (
+                    <div
+                        className={styles.result}
+                        dangerouslySetInnerHTML={{ __html: resultHtml }}
+                    />
+                ) : (
+                    <p className={styles.noResult}>
+                        条件を選択すると必要素材が表示されます。
+                    </p>
+                )}
 
                 <section id="usage" className={styles.section}>
                     <div className={styles.sectionTitle}>使い方</div>
                     <ol className={styles.usageList}>
                         <li>各装備ごとに、現在のレベルと目標レベルを選択します。</li>
-                        <li>「必要素材一覧」に、各素材の必要数が表示されます。</li>
-                        <li>レベルを逆に入力すると値は出ませんのでご注意ください。</li>
+                        <li>必要素材が自動で集計されます。</li>
+                        <li>レベルを逆に設定すると素材は加算されません。</li>
                     </ol>
                 </section>
             </main>
+
             <Footer />
         </>
     );
