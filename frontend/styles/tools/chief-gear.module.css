@@ -24,36 +24,46 @@
 }
 
 /* =====================================
-   Outer Frame（外枠装飾）
-===================================== */
-.frame {
-    background: #f9f9f9;
-    border: 1px solid var(--ws-border);
-    border-radius: 16px;
-    padding: 14px;
-}
-
-/* =====================================
-   Card（内側）
+   Card / Frame
 ===================================== */
 .card {
     background: #ffffff;
-    border-radius: 12px;
-    padding: 10px 12px;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-}
-
-.cardTitle {
-    background-color: #2563eb;
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: #ffffff;
-    text-align: center;
+    border-radius: 14px;
+    padding: 12px 14px;
+    border: 1px solid var(--ws-border);
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
 }
 
 /* =====================================
-   Level Selector（画像寄せ）
+   Building List（FireCrystal同密度）
+===================================== */
+.buildingRow {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.buildingRow:first-child {
+    border-top: none;
+}
+
+.buildingName {
+    width: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ws-text-main);
+}
+
+.buildingSelectors {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* =====================================
+   Level Selector（± + select）
 ===================================== */
 .levelSelector {
     display: flex;
@@ -78,7 +88,7 @@
 }
 
 .levelSelector select {
-    min-width: 80px;
+    min-width: 90px;
     height: 28px;
     font-size: 12px;
     text-align: center;
@@ -88,64 +98,41 @@
 }
 
 /* =====================================
-   Building List（詰め表示）
+   Result Title
 ===================================== */
-.buildingList {
-    display: flex;
-    flex-direction: column;
-}
-
-.buildingRow {
+.resultTitle {
     display: flex;
     align-items: center;
-    padding: 6px 0;
-    border-top: 1px solid #e5e7eb;
-}
-
-.buildingRow:first-child {
-    border-top: none;
-}
-
-.buildingName {
-    width: 120px;
-    font-size: 13px;
-    font-weight: 600;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
     color: var(--ws-text-main);
+    padding: 8px 12px;
+    margin: 20px 0 10px;
+    background: linear-gradient(90deg, #eff6ff, #ffffff);
+    border-left: 4px solid var(--ws-blue);
+    border-radius: 8px;
 }
 
-.buildingSelectors {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-}
-
-.selectorGroup {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.selectorGroup span {
-    font-size: 11px;
-    color: var(--ws-text-sub);
+.resultTitle::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ws-blue);
 }
 
 /* =====================================
-   Result Table Container
+   Result Table
 ===================================== */
-.resultTableScale {
-    margin-top: 20px;
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 10px;
-    border: 1px solid var(--ws-border);
-    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
-}
-
 .resultTable {
     width: 100%;
     border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--ws-border);
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
 }
 
 .resultTable thead th {
@@ -174,6 +161,7 @@
     background: #f8fafc;
 }
 
+/* 合計行 */
 .resultTable tbody tr:last-child {
     background: linear-gradient(90deg, #eef2ff, #e0e7ff);
 }
@@ -193,16 +181,8 @@
         padding: 18px 12px 36px;
     }
 
-    .sectionTitle {
-        font-size: 15px;
-    }
-
-    .buildingRow {
-        padding: 6px 0;
-    }
-
     .buildingName {
-        width: 90px;
+        width: 80px;
         font-size: 12px;
     }
 
@@ -210,39 +190,17 @@
         min-width: 70px;
         font-size: 11px;
     }
-}
 
-/* =====================================
-   Result Title（必要素材一覧）
-===================================== */
-.resultTitle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--ws-text-main);
-    padding: 8px 12px;
-    margin: 20px 0 10px;
-    background: linear-gradient(90deg, #eff6ff, #ffffff);
-    border-left: 4px solid var(--ws-blue);
-    border-radius: 8px;
-}
-
-/* 左のアクセント丸（高級感） */
-.resultTitle::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--ws-blue);
-}
-
-/* スマホ */
-@media (max-width: 768px) {
     .resultTitle {
         font-size: 14px;
         padding: 7px 10px;
-        margin-bottom: 8px;
+    }
+
+    .resultTable thead th {
+        font-size: 10px;
+    }
+
+    .resultTable tbody td {
+        font-size: 11px;
     }
 }

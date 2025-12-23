@@ -23,6 +23,7 @@ export default function Home() {
 
             <CategoryTextNav
                 categories={[
+                    { label: "トップ", href: "/" },
                     { label: "初心者ガイド", href: "/guides/beginner" },
                     { label: "素材計算ツール", href: "/tools/materials" },
                     { label: "時間計算ツール", href: "/tools/time" },
@@ -33,7 +34,7 @@ export default function Home() {
 
             <PageIntro
                 title="Whiteout Survival 総合攻略トップ"
-                updatedAt="2025年12月19日"
+                updatedAt="2025年12月20日23:32"
                 description="Whiteout Survivalの攻略情報と各種計算ツールをまとめた総合サイトです。"
                 toc={[
                     { label: "おすすめコンテンツ", targetId: "recommend" },

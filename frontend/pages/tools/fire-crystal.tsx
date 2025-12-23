@@ -15,6 +15,7 @@ import PageHero from "@/components/PageHero";
 import CategoryTextNav from "@/components/CategoryTextNav";
 import PageIntro from "@/components/PageIntro";
 import dynamic from "next/dynamic";
+import Footer from "@/components/Footer";
 const Header = dynamic(() => import("@/components/Header"), {
     ssr: false,
 });
@@ -36,18 +37,6 @@ export default function FireCrystalTool() {
     const [bulkEnd, setBulkEnd] = useState<number>(0);
 
     type MaterialTable = Record<number, string[]>;
-
-
-
-    function applyBulkLevels(start: number, end: number) {
-        setLevels(prev =>
-            prev.map(() => ({
-                start,
-                end,
-            }))
-        );
-    }
-
 
     function updateLevel(index: number, key: "start" | "end", value: number) {
         setLevels(prev =>
@@ -141,6 +130,40 @@ export default function FireCrystalTool() {
         return `${d}日 ${h}時間 ${min}分`;
     }
 
+    function LevelSelector({
+        value,
+        onChange,
+    }: {
+        value: number;
+        onChange: (v: number) => void;
+    }) {
+        return (
+            <div className={Style.levelSelector}>
+                <button
+                    onClick={() => onChange(Math.max(0, value - 1))}
+                >
+                    −
+                </button>
+
+                <select
+                    value={value}
+                    onChange={(e) => onChange(Number(e.target.value))}
+                >
+                    {fireLevels.map((l, idx) => (
+                        <option key={idx} value={idx}>
+                            {l}
+                        </option>
+                    ))}
+                </select>
+
+                <button
+                    onClick={() => onChange(Math.min(fireLevels.length - 1, value + 1))}
+                >
+                    ＋
+                </button>
+            </div>
+        );
+    }
 
 
 
@@ -184,6 +207,7 @@ export default function FireCrystalTool() {
             {/* テキストカテゴリ（軽量ナビ） */}
             <CategoryTextNav
                 categories={[
+                    { label: "トップ", href: "/" },
                     { label: "初心者ガイド", href: "/guides/beginner" },
                     { label: "素材計算ツール", href: "/tools/materials" },
                     { label: "時間計算ツール", href: "/tools/time" },
@@ -193,101 +217,98 @@ export default function FireCrystalTool() {
             />
 
             <PageIntro
-                title="Whiteout Survival 総合攻略トップ"
+                title="火晶計算ツール"
                 updatedAt="2025年12月19日"
-                description="Whiteout Survivalの攻略情報と各種計算ツールをまとめた総合サイトです。初心者向けガイドから素材・時間計算ツールまで網羅しています。"
+                description="火晶（Blast Crystal）および製錬火晶（Refined Blast Crystal）の必要数を計算するツールです。各施設の現在レベルと希望レベルを選択すると、必要な火晶・製錬火晶および資源、所要時間を表示します。"
                 toc={[
                     { label: "火晶計算ツール", targetId: "fire-crystal" },
+                    { label: "使い方", targetId: "usage" },
                 ]}
             />
             <main>
                 <section id="fire-crystal" className={Style.section}>
-                    <h1>火晶計算ツール</h1>
+                    <div className={Style.sectionTitle}>火晶計算ツール</div>
                     <p>※ レベルを逆に入力すると値は出ません</p>
 
-                    <h1>火晶計算ツール</h1>
-                    <p>※ レベルを逆に入力すると値は出ません</p>
 
                     {/* 一括設定 */}
-                    <div style={{ marginBottom: "16px" }}>
-                        <strong>全施設一括設定</strong><br />
+                    <div className={Style.frame}>
+                        <div className={Style.card}>
+                            <div className={Style.cardTitle}>全施設一括設定</div>
 
-                        現在：
-                        <select
-                            value={bulkStart}
-                            onChange={e => {
-                                const newStart = Number(e.target.value);
-                                setBulkStart(newStart);
+                            <div className={Style.row}>
+                                <span>現在</span>
+                                <LevelSelector
+                                    value={bulkStart}
+                                    onChange={(v) => {
+                                        setBulkStart(v);
+                                        setLevels(prev =>
+                                            prev.map(item => ({ start: v, end: item.end }))
+                                        );
+                                    }}
+                                />
+                            </div>
 
-                                setLevels(prev =>
-                                    prev.map(item => ({
-                                        start: newStart,
-                                        end: item.end,
-                                    }))
-                                );
-                            }}
-                        >
-                            {fireLevels.map((l, idx) => (
-                                <option key={idx} value={idx}>{l}</option>
-                            ))}
-                        </select>
+                            <div className={Style.row}>
+                                <span>目標</span>
+                                <LevelSelector
+                                    value={bulkEnd}
+                                    onChange={(v) => {
+                                        setBulkEnd(v);
+                                        setLevels(prev =>
+                                            prev.map(item => ({ start: item.start, end: v }))
+                                        );
+                                    }}
+                                />
+                            </div>
+                        </div>
 
-                        希望：
-                        <select
-                            value={bulkEnd}
-                            onChange={e => {
-                                const newEnd = Number(e.target.value);
-                                setBulkEnd(newEnd);
 
-                                setLevels(prev =>
-                                    prev.map(item => ({
-                                        start: item.start,
-                                        end: newEnd,
-                                    }))
-                                );
-                            }}
-                        >
-                            {fireLevels.map((l, idx) => (
-                                <option key={idx} value={idx}>{l}</option>
-                            ))}
-                        </select>
 
-                        <hr />
+
+
+                        {/* 入力欄 */}
+                        <div className={Style.card}>
+                            <div className={Style.cardTitle}>建物別設定</div>
+
+                            <div className={Style.buildingList}>
+                                {setNames.map((name, i) => (
+                                    <div key={i} className={Style.buildingRow}>
+                                        {/* 左：建物名 */}
+                                        <div className={Style.buildingName}>
+                                            {name}
+                                        </div>
+
+                                        {/* 右：セレクタ */}
+                                        <div className={Style.buildingSelectors}>
+                                            <div className={Style.selectorGroup}>
+                                                <span>現在</span>
+                                                <LevelSelector
+                                                    value={levels[i].start}
+                                                    onChange={(v) => updateLevel(i, "start", v)}
+                                                />
+                                            </div>
+
+                                            <div className={Style.selectorGroup}>
+                                                <span>目標</span>
+                                                <LevelSelector
+                                                    value={levels[i].end}
+                                                    onChange={(v) => updateLevel(i, "end", v)}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
 
 
-                    {/* 入力欄 */}
-                    {setNames.map((name, i) => (
-                        <div key={i}>
-                            <strong>{name}</strong><br />
-
-                            現在：
-                            <select
-                                value={levels[i].start}
-                                onChange={e => updateLevel(i, "start", Number(e.target.value))}
-                            >
-                                {fireLevels.map((l, idx) => (
-                                    <option key={idx} value={idx}>{l}</option>
-                                ))}
-                            </select>
-
-                            希望：
-                            <select
-                                value={levels[i].end}
-                                onChange={e => updateLevel(i, "end", Number(e.target.value))}
-                            >
-                                {fireLevels.map((l, idx) => (
-                                    <option key={idx} value={idx}>{l}</option>
-                                ))}
-                            </select>
-
-                            <hr />
-                        </div>
-                    ))}
 
                     {/* 結果テーブル */}
-                    <div className={Style.resultTableScale}>
+                    <div className={Style.resultTitle}>必要素材一覧</div>
+                    < div className={Style.resultTableScale} >
                         <table className={Style.resultTable}>
                             <thead>
                                 <tr>
@@ -326,7 +347,18 @@ export default function FireCrystalTool() {
                         </table>
                     </div>
                 </section>
+
+                <section id="usage" className={Style.section}>
+                    <div className={Style.sectionTitle}>使い方</div>
+                    <ol className={Style.usageList}>
+                        <li>各施設の現在レベルと目標レベルを選択します。</li>
+                        <li>必要な火晶・製錬火晶および資源、所要時間が自動的に計算され、表に表示されます。</li>
+                        <li>全施設一括設定を使うと、すべての施設のレベルを一度に設定できます。</li>
+                    </ol>
+                </section>
             </main >
+
+            <Footer />
         </>
     );
 }

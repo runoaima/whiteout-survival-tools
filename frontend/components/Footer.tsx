@@ -9,7 +9,7 @@ export default function Footer() {
             <div className={styles.section}>
                 <div className={styles.sectionTitle}>当ゲームタイトルの権利表記</div>
                 <p className={styles.copyrightText}>
-                    ©2025 YourGame All Rights Reserved.<br />
+                    ©2025 runoaima All Rights Reserved.<br />
                     当サイト上で使用しているゲーム画像の著作権および商標権、その他知的財産権は、
                     各権利所有者に帰属します。
                 </p>
@@ -28,7 +28,7 @@ export default function Footer() {
             </div>
 
             <div className={styles.copy}>
-                Copyright © YourSite All Rights Reserved.
+                Copyright © runoaima All Rights Reserved.
             </div>
         </footer>
     );
