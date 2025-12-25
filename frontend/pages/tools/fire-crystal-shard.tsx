@@ -181,7 +181,7 @@ export default function HeroSkillTool() {
                 updatedAt="2025年12月25日"
                 description="火晶微粒子スキルノードのレベルに応じた必要素材を計算します。"
                 toc={[
-                    { label: "火晶計算ツール", targetId: "fire-crystal" },
+                    { label: "火晶微粒子計算ツール", targetId: "fire-crystal" },
                     { label: "使い方", targetId: "usage" },
                 ]}
             />

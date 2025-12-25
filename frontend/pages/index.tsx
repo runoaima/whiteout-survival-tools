@@ -34,7 +34,7 @@ export default function Home() {
 
             <PageIntro
                 title="Whiteout Survival 総合攻略トップ"
-                updatedAt="2025年12月20日23:32"
+                updatedAt="2025年12月25日18:00"
                 description="Whiteout Survivalの攻略情報と各種計算ツールをまとめた総合サイトです。"
                 toc={[
                     { label: "おすすめコンテンツ", targetId: "recommend" },
@@ -52,10 +52,10 @@ export default function Home() {
                     <h2 className={styles.sectionTitle}>おすすめコンテンツ</h2>
                     <CategoryGrid
                         items={[
-                            { label: "建物資材計算", href: "/tools/buildings" },
-                            { label: "ヒーロー育成計算", href: "/tools/heroes" },
-                            { label: "イベント計算", href: "/tools/events" },
-                            { label: "時間短縮計算", href: "/tools/time" },
+                            { label: "イベントカレンダー", href: "/events/events-calendar", image: "/images/events/events-calendar.png" },
+                            { label: "火晶計算ツール", href: "/tools/fire-crystal", image: "/images/home/fire-crystal-tool.png" },
+                            { label: "領主装備計算ツール", href: "/tools/chief-gear", image: "/images/home/chief-gear-tool.png" },
+                            { label: "行軍時間計算ツール", href: "/tools/march-time", image: "/images/home/march-time-tool.png" },
                         ]}
                     />
                 </section>
@@ -89,6 +89,26 @@ export default function Home() {
                             { label: "英雄経験値計算ツール", href: "/tools/hero-exp", image: "/images/materials/tool-hero-exp.png" },
                             { label: "ペット材料計算ツール", href: "/tools/pet-materials", image: "/images/materials/tool-pet-materials.png" },
                             { label: "曙光同盟素材計算ツール", href: "/tools/dawn-alliance-materials", image: "/images/materials/tool-dawn-alliance-materials.png" },
+                        ]}
+                    />
+                </section>
+
+                <section id="time" className={styles.section}>
+                    <h2 className={styles.sectionTitle}>時間計算ツール</h2>
+                    <CategoryGrid
+                        items={[
+                            { label: "行軍時間計算ツール", href: "/tools/march-time", image: "/images/time/march-time.png" },
+                            { label: "集結行軍時間計算ツール", href: "/tools/rally-march-time", image: "/images/time/rally-march-time.png" },
+                        ]}
+                    />
+                </section>
+
+                <section id="events" className={styles.section}>
+                    <h2 className={styles.sectionTitle}>イベント攻略</h2>
+                    <CategoryGrid
+                        items={[
+                            { label: "イベントカレンダー", href: "/events/events-calendar", image: "/images/events/events-calendar.png" },
+                            { label: "過去イベント攻略", href: "/events/past-events" },
                         ]}
                     />
                 </section>
