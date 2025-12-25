@@ -150,10 +150,14 @@ export default function HeroStarTool() {
                 title="英雄★計算ツール"
                 updatedAt="2025年12月"
                 description="英雄の星レベルに必要な欠片数を計算します。"
-                toc={[]}
+                toc={[
+                    { label: "英雄ランク計算ツール", targetId: "hero-rank-calculator" },
+                    { label: "使い方", targetId: "usage" },
+                ]}
             />
 
             <main>
+                <div className={Style.sectionTitle}>英雄ランク計算ツール</div>
                 <section className={Style.section}>
                     <div className={Style.frame}>
                         {heroes.map((hero, i) => (
@@ -224,6 +228,14 @@ export default function HeroStarTool() {
                             </tr>
                         </tbody>
                     </table>
+                </section>
+                
+                <section id="usage" className={Style.section}>
+                    <div className={Style.sectionTitle}>使い方</div>
+                    <ol className={Style.usageList}>
+                        <li>各英雄ごとに、現在の星レベルと目標の星レベルを選択します。</li>
+                        <li>「必要素材」に、各素材の必要数が表示されます。</li>
+                    </ol>
                 </section>
             </main>
 

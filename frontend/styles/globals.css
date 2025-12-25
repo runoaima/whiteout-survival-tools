@@ -6,3 +6,16 @@
     --ws-text-main: #0f172a;
     --ws-text-sub: #64748b;
 }
+
+/* 全ページ共通フォント */
+html, body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans JP",
+        sans-serif;
+}

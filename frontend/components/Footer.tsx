@@ -20,7 +20,7 @@ export default function Footer() {
                 <Link href="#">トップ</Link>
                 <Link href="#">ヘルプ</Link>
                 <Link href="#">運営会社</Link>
-                <Link href="#">採用情報</Link>
+                <Link href="updates">更新情報</Link>
                 <Link href="#">利用規約</Link>
                 <Link href="#">プライバシーポリシー</Link>
                 <Link href="#">広告のご案内</Link>

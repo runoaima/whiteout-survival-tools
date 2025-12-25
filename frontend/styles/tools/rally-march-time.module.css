@@ -1,0 +1,283 @@
+/* ===============================
+   全体
+=============================== */
+
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 20px 14px 60px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+/* =====================================
+   Section Layout
+===================================== */
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+}
+
+.sectionTitle {
+    background: #4b3621;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.section p {
+    font-size: 12px;
+    color: var(--ws-text-sub);
+    margin-bottom: 14px;
+}
+
+/* ===============================
+   共通カード
+=============================== */
+
+.card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    padding: 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* ===============================
+   時刻表示
+=============================== */
+
+.timeRow {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.timeBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeLabel {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.timeMain {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.milliseconds {
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.timeSub {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 16px;
+}
+
+/* ===============================
+   offset
+=============================== */
+
+.offsetRow {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.offsetInput {
+    width: 110px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+/* ===============================
+   ボタン
+=============================== */
+
+.btn {
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.05s;
+}
+
+.btn:hover {
+    background: #e5e7eb;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* ===============================
+   到着時刻
+=============================== */
+
+.arrivalRow {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.arrivalInput {
+    font-size: 18px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+}
+
+.arrivalJst {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 18px;
+}
+
+/* ===============================
+   部隊エリア
+=============================== */
+
+.unitGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+}
+
+.unitCard {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    padding: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.unitTitle {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* ===============================
+   設定ブロック
+=============================== */
+
+.settingBlock {
+    margin-bottom: 12px;
+}
+
+.settingLabel {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+.radioRow label {
+    font-size: 13px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.radioRow input {
+    margin-right: 4px;
+}
+
+/* ===============================
+   行軍時間
+=============================== */
+
+.marchRow {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.marchInput {
+    width: 90px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+/* ===============================
+   カウント表示
+=============================== */
+
+.resultBlock {
+    margin-bottom: 8px;
+}
+
+.resultLabel {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.monoBig {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 18px;
+}
+
+/* ===============================
+   状態色
+=============================== */
+
+.go {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+.gathering {
+    color: #2563eb;
+}
+
+.marching {
+    color: #16a34a;
+}
+
+.arrived {
+    color: #9333ea;
+}
+
+/* ===============================
+   レスポンシブ
+=============================== */
+
+@media (max-width: 640px) {
+    .timeMain {
+        font-size: 20px;
+    }
+
+    .arrivalInput {
+        font-size: 16px;
+    }
+
+    .monoBig {
+        font-size: 18px;
+    }
+}
