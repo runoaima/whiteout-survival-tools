@@ -1,0 +1,341 @@
+/* src/styles/tools/hero-skill.module.css */
+
+.container {
+    min-height: 100vh;
+    padding: 24px 12px 48px;
+    background: radial-gradient(circle at 50% 30%, #5a1d1d 0%, #230d0d 60%, #120707 100%);
+    color: #fff;
+}
+
+/* ===============================
+   ツリー表示エリア
+=============================== */
+.treeWrap {
+    position: relative;
+    width: min(420px, 95vw);
+    height: min(620px, 88vh);
+    margin: 0 auto 20px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 170, 120, 0.18);
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
+}
+
+.treeBg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(255, 120, 90, 0.12), transparent 60%),
+        linear-gradient(180deg, rgba(255, 200, 150, 0.08), rgba(0, 0, 0, 0.05));
+}
+
+/* ===============================
+   線（親→子）
+=============================== */
+.lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.line {
+    stroke: rgba(255, 170, 110, 0.55);
+    stroke-width: 0.7;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px rgba(255, 120, 70, 0.55));
+}
+
+/* ===============================
+   ノード（ボタン）
+=============================== */
+.node {
+    position: absolute;
+    width: 86px;
+    height: 86px;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 170, 110, 0.45);
+    background: radial-gradient(circle at 40% 30%, #ff6a4a, #8b1d12);
+    box-shadow: 0 0 14px rgba(255, 110, 70, 0.55);
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 6px;
+}
+
+.node:hover {
+    transform: translate(-50%, -50%) scale(1.03);
+}
+
+.nodeLabel {
+    font-size: 11px;
+    font-weight: 800;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    line-height: 1.1;
+}
+
+.nodeLv {
+    margin-top: 4px;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.2px;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+/* 親が未MAXでロック */
+.nodeLocked {
+    opacity: 0.55;
+    filter: grayscale(0.3);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: none;
+}
+
+/* MAX状態 */
+.nodeMax {
+    border-color: rgba(255, 230, 160, 0.9);
+    box-shadow: 0 0 18px rgba(255, 210, 140, 0.65);
+}
+
+/* ===============================
+   セクション / テーブル
+=============================== */
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sectionTitle {
+    background: #4b3621;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 900;
+    margin: 10px 0 12px;
+}
+
+.tableWrap {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 170, 120, 0.18);
+    border-radius: 16px;
+    padding: 10px;
+
+    /* 追加 */
+    overflow: hidden;
+    transform-origin: top left;
+}
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    /* これを削除 or 無効化 */
+    /* min-width: 860px; ← 削除 */
+}
+
+
+.table thead th {
+    background: rgba(255, 255, 255, 0.10);
+    font-size: 12px;
+    font-weight: 900;
+    padding: 8px 6px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.table tbody td {
+    font-size: 12px;
+    padding: 8px 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.tdName {
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.tdLv {
+    text-align: center;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.tdNum {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.totalRow {
+    background: linear-gradient(90deg, rgba(255, 220, 180, 0.18), rgba(255, 255, 255, 0.06));
+}
+
+.totalRow td {
+    font-weight: 900;
+    border-bottom: none;
+}
+
+/* ===============================
+   ポップアップ
+=============================== */
+.popupOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    z-index: 50;
+}
+
+.popup {
+    width: min(360px, 95vw);
+    background: #fff;
+    color: #111827;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+}
+
+.popupTitle {
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+    background: #2563eb;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 10px;
+}
+
+.popupSub {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 800;
+    color: #334155;
+}
+
+.popupLabel {
+    display: block;
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 900;
+    color: #475569;
+}
+
+.popupSelect {
+    width: 100%;
+    margin-top: 6px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    padding: 0 10px;
+    font-weight: 800;
+    background: #fff;
+}
+
+.popupHint {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.lockedText {
+    margin-top: 12px;
+    padding: 10px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+    color: #9a3412;
+    font-weight: 900;
+    text-align: center;
+}
+
+.popupClose {
+    width: 100%;
+    margin-top: 12px;
+    height: 38px;
+    border-radius: 10px;
+    border: none;
+    background: #e5e7eb;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.popupClose:hover {
+    opacity: 0.9;
+}
+
+/* ===============================
+   モバイル微調整
+=============================== */
+@media (max-width: 480px) {
+    .node {
+        width: 78px;
+        height: 78px;
+    }
+
+    .nodeLabel {
+        font-size: 10px;
+    }
+
+    .nodeLv {
+        font-size: 13px;
+    }
+}
+
+/* ===============================
+   テーブル自動縮小
+=============================== */
+
+/* PC（そのまま） */
+@media (min-width: 1024px) {
+    .tableWrap {
+        transform: scale(1);
+    }
+}
+
+/* タブレット */
+@media (max-width: 1023px) {
+    .tableWrap {
+        transform: scale(0.9);
+    }
+}
+
+/* スマホ */
+@media (max-width: 768px) {
+    .tableWrap {
+        transform: scale(0.8);
+    }
+}
+
+/* 超小型スマホ */
+@media (max-width: 480px) {
+    .tableWrap {
+        transform: scale(0.7);
+    }
+}
+
+
+.resetWrap {
+    display: flex;
+    justify-content: center;
+    margin: 14px 0;
+}
+
+.resetButton {
+    padding: 8px 18px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 900;
+    background: #7c2d12;
+    color: #fff;
+    cursor: pointer;
+}
+
+.resetButton:hover {
+    opacity: 0.9;
+}

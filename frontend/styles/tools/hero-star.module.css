@@ -1,0 +1,234 @@
+/* =====================================
+   Section Layout
+===================================== */
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+}
+
+.sectionTitle {
+    background: #4b3621;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.section p {
+    font-size: 12px;
+    color: var(--ws-text-sub);
+    margin-bottom: 14px;
+}
+
+/* =====================================
+   Frame
+===================================== */
+.frame {
+    background: #f9f9f9;
+    border: 1px solid var(--ws-border);
+    border-radius: 16px;
+    padding: 14px;
+    display: grid;
+    gap: 12px;
+}
+
+/* =====================================
+   Hero Card
+===================================== */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    background: #2563eb;
+    border-radius: 8px;
+    padding: 6px 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* =====================================
+   Slider
+===================================== */
+.card label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ws-text-sub);
+}
+
+.card input[type="range"] {
+    width: 100%;
+    margin: 6px 0 2px;
+}
+
+/* =====================================
+   Stars Display
+===================================== */
+.stars {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 6px;
+}
+
+.star {
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(180deg, #fde047, #facc15);
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}
+
+.piece {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #60a5fa;
+}
+
+/* =====================================
+   Add / Remove Buttons
+===================================== */
+.buttonRow {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.buttonRow button {
+    flex: 1;
+    height: 36px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buttonRow button:first-child {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.buttonRow button:last-child {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.buttonRow button:hover {
+    opacity: 0.85;
+}
+
+/* =====================================
+   Result Title
+===================================== */
+.resultTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ws-text-main);
+    padding: 8px 12px;
+    margin: 20px 0 10px;
+    background: linear-gradient(90deg, #eff6ff, #ffffff);
+    border-left: 4px solid var(--ws-blue);
+    border-radius: 8px;
+}
+
+.resultTitle::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ws-blue);
+}
+
+/* =====================================
+   Result Table
+===================================== */
+.resultTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+}
+
+.resultTable thead th {
+    background: #f1f5f9;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px;
+    text-align: center;
+}
+
+.resultTable tbody td {
+    font-size: 12px;
+    padding: 6px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: right;
+}
+
+.resultTable tbody td:first-child {
+    text-align: left;
+    font-weight: 600;
+}
+
+.resultTable tbody tr:last-child {
+    background: linear-gradient(90deg, #eef2ff, #e0e7ff);
+}
+
+.resultTable tbody tr:last-child td {
+    font-weight: 700;
+    color: #1e3a8a;
+    border-bottom: none;
+}
+
+/* =====================================
+   Mobile
+===================================== */
+@media (max-width: 768px) {
+    .section {
+        padding: 18px 12px 36px;
+    }
+
+    .card h4 {
+        font-size: 13px;
+    }
+
+    .star {
+        width: 12px;
+        height: 12px;
+    }
+
+    .piece {
+        width: 8px;
+        height: 8px;
+    }
+
+    .buttonRow button {
+        font-size: 13px;
+    }
+}
