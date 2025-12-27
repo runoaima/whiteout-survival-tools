@@ -6,6 +6,14 @@ export type UpdateItem = {
 
 export const updates: UpdateItem[] = [
     {
+        date: "2025-12-28",
+        title: "イベントカレンダーを追加",
+        details: [
+            "イベントカレンダーを実装しました。",
+            "イベントの日程を確認できるカレンダーです。",
+        ],
+    },
+    {
         date: "2025-12-26",
         title: "計算ツールを追加、改善",
         details: [
