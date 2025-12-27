@@ -34,7 +34,7 @@ export default function Home() {
 
             <PageIntro
                 title="Whiteout Survival 総合攻略トップ"
-                updatedAt="2025年12月25日18:00"
+                updatedAt="2025年12月28日1:38"
                 description="Whiteout Survivalの攻略情報と各種計算ツールをまとめた総合サイトです。"
                 toc={[
                     { label: "おすすめコンテンツ", targetId: "recommend" },
