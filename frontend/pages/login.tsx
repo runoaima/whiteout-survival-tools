@@ -1,52 +1,90 @@
-import dynamic from "next/dynamic";
 import { useState } from "react";
-import styles from "@/styles/Login.module.css";
+import { useRouter } from "next/router";
 import {
   loginWithEmail,
   loginWithGoogle,
-  loginWithApple,
 } from "@/lib/auth";
-
-const Header = dynamic(() => import("@/components/Header"), {
-  ssr: false,
-});
+import Style from "@/styles/login.module.css";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const login = async () => {
+    try {
+      await loginWithEmail(email, password);
+      router.push("/account");
+    } catch {
+      setError("ログインに失敗しました");
+    }
+  };
+
+  const googleLogin = async () => {
+    try {
+      await loginWithGoogle();
+      router.push("/account");
+    } catch {
+      setError("Googleログインに失敗しました");
+    }
+  };
 
   return (
-    <>
-      <Header title="ログイン" />
+    <div className={Style.container}>
+      <div className={Style.header}>
+        <h1>ログイン</h1>
+      </div>
 
-      <main className={styles.container}>
-        <h1 className={styles.title}>ログイン</h1>
+      <div className={Style.card}>
+        {error && <p className={Style.error}>{error}</p>}
 
-        <label className={styles.label}>メールアドレス</label>
+        <label>メールアドレス</label>
         <input
-          className={styles.input}
+          className={Style.input}
+          type="email"
+          placeholder="あなたのメールアドレス"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label className={styles.label}>パスワード</label>
+
+        <label>パスワード</label>
         <input
           type="password"
-          className={styles.input}
+          placeholder="あなたのパスワード"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button
-          className={styles.loginButton}
-          onClick={() => loginWithEmail(email, password)}
-        >
-          ログイン
+        <div className={Style.forgot}>パスワードを忘れた方はこちら</div>
+
+        <button className={Style.loginBtn} onClick={login}>
+          ログインする
         </button>
 
-        <button onClick={loginWithGoogle}>Google</button>
-        <button onClick={loginWithApple}>Apple</button>
-      </main>
-    </>
+        <div className={Style.or}>または</div>
+
+        <button className={`${Style.social} ${Style.apple}`}>
+           Appleでサインイン
+        </button>
+
+        <button
+          className={`${Style.social} ${Style.google}`}
+          onClick={googleLogin}
+        >
+          Googleでログイン
+        </button>
+
+        <button className={`${Style.social} ${Style.line}`}>
+          LINEでログイン
+        </button>
+
+        <div className={Style.signup}>
+          アカウントをお持ちでない方
+          <button>新規会員登録</button>
+        </div>
+      </div>
+    </div>
   );
 }

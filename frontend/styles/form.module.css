@@ -1,0 +1,18 @@
+.group {
+    margin-bottom: 16px;
+}
+
+.label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}

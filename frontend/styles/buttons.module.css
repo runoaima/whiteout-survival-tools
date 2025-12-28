@@ -1,0 +1,17 @@
+.primary {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg,#36c486,#2ea06d);
+  color: white;
+  font-weight: bold;
+}
+
+.gray {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #f1f3f5;
+}

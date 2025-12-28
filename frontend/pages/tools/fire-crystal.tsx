@@ -218,7 +218,7 @@ export default function FireCrystalTool() {
 
             <PageIntro
                 title="火晶計算ツール"
-                updatedAt="2025年12月19日"
+                updatedAt="2025年12月28日18:02"
                 description="火晶（Blast Crystal）および製錬火晶（Refined Blast Crystal）の必要数を計算するツールです。各施設の現在レベルと希望レベルを選択すると、必要な火晶・製錬火晶および資源、所要時間を表示します。"
                 toc={[
                     { label: "火晶計算ツール", targetId: "fire-crystal" },

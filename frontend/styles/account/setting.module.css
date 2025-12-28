@@ -1,0 +1,45 @@
+.container {
+    background: #f4f6f8;
+    min-height: 100vh;
+    padding-bottom: 60px;
+    padding-top: 50px;
+}
+
+.title {
+    background: #333;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.subtitle {
+    margin-top: 16px;
+    padding: 10px 12px;
+    background: #333;
+    color: white;
+    font-size: 14px;
+}
+
+.section {
+    background: white;
+}
+
+.item {
+    padding: 14px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #2563eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.alert {
+    color: red;
+    font-size: 12px;
+}

@@ -5,42 +5,37 @@ import Link from "next/link";
 import styles from "@/styles/Header.module.css";
 import HamburgerMenu from "./HamburgerMenu";
 import { getFirebaseAuth } from "@/lib/firebase";
-
+import { onAuthStateChanged, User } from "firebase/auth";
 
 export default function Header({ title }: { title: string }) {
     const [open, setOpen] = useState(false);
-    const [user, setUser] = useState<unknown>(null);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
-        let unsubscribe: (() => void) | undefined;
+        const auth = getFirebaseAuth();
 
-        (async () => {
-            const auth = await getFirebaseAuth();
-            const { onAuthStateChanged } = await import("firebase/auth");
+        const unsubscribe = onAuthStateChanged(auth, (u) => {
+            setUser(u);
+        });
 
-            unsubscribe = onAuthStateChanged(auth, (user) => {
-                setUser(user);
-            });
-        })();
-
-        return () => {
-            if (unsubscribe) unsubscribe();
-        };
+        return () => unsubscribe();
     }, []);
 
+    // ✅ ここで必ず string を保証する
+    const accountLink = user ? "/account" : "/login";
 
     return (
         <>
             <header className={styles.header}>
-                <div className={styles.left}>{title}</div>
+                <Link href="/" className={styles.left}>
+                    {title}
+                </Link>
 
                 <div className={styles.right}>
                     <button className={styles.icon}>🔍</button>
 
-                    <Link
-                        href={user ? "/mypage" : "/login"}
-                        className={styles.icon}
-                    >
+                    {/* ← ここが重要 */}
+                    <Link href={accountLink} className={styles.icon}>
                         👤
                     </Link>
 

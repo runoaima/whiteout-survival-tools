@@ -1,0 +1,29 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3f4f6;
+}
+
+.card {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.row {
+    margin-bottom: 12px;
+}
+
+.logout {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}

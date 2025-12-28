@@ -1,0 +1,19 @@
+/* accountLayout.module.css */
+.page {
+    padding: 16px;
+    background: #f7f8fa;
+    min-height: 100vh;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .05);
+}
