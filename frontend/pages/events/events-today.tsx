@@ -31,41 +31,47 @@ function isMatchDate(event: EventItem, date: Date) {
     const rule = event.repeat;
     const dateStr = ymd(date);
 
-    if ("excludeDates" in rule && rule.excludeDates?.includes(dateStr)) {
-        return false;
+    // 単発
+    if (rule.type === "once") {
+        return rule.date === dateStr;
     }
-
-    if ("until" in rule && rule.until) {
-        if (dayDiff(date, new Date(rule.until)) > 0) return false;
-    }
-
-    if (rule.type === "once") return rule.date === dateStr;
 
     const start = new Date(rule.startDate);
-    if (dayDiff(date, start) < 0) return false;
+    if (date < start) return false;
 
+    // 毎日
     if (rule.type === "daily") {
-        return dayDiff(date, start) % rule.interval === 0;
+        const diff =
+            Math.floor((+date - +start) / 86400000);
+        return diff % rule.interval === 0;
     }
 
+    // 毎週
     if (rule.type === "weekly") {
-        const diffWeeks = Math.floor(dayDiff(date, start) / 7);
+        const diffWeeks =
+            Math.floor((+date - +start) / (7 * 86400000));
+
         return (
             diffWeeks % rule.interval === 0 &&
             rule.weekdays.includes(date.getDay())
         );
     }
 
+    // 毎月
     if (rule.type === "monthly") {
         const diffMonths =
             (date.getFullYear() - start.getFullYear()) * 12 +
             (date.getMonth() - start.getMonth());
-        return diffMonths % rule.interval === 0 &&
-            date.getDate() === rule.day;
+
+        return (
+            diffMonths % rule.interval === 0 &&
+            date.getDate() === rule.day
+        );
     }
 
     return false;
 }
+
 
 /* =========================
    Component
@@ -158,7 +164,10 @@ export default function TodayEventPanel() {
                     { label: "本日のイベント", targetId: "calendar" },
                 ]}
             />
-            <main id ="calendar" className={Style.main}>
+            <main id="calendar" className={Style.main}>
+                <section id="fire-crystal" className={Style.section}>
+                    <div className={Style.sectionTitle}>火晶微粒子計算ツール</div>
+                </section>
                 <div className={Style.container}>
                     <div className={Style.card}>
                         <div className={Style.header}>
