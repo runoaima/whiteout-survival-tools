@@ -129,6 +129,21 @@ export const events: EventItem[] = [
     },
 
     {
+        id: "Alliance Mobilization",
+        title: "同盟争覇戦",
+        times: [
+            { start: "左ルート 盾:80 槍:20 弓:0", end: "" },
+            { start: "ペットバフ付けてエントリーしてね！", end: "" },
+        ],
+        repeat: {
+            type: "weekly",
+            startDate: "2025-03-03",
+            interval: 1,
+            weekdays: [1, 2],
+        }
+    },
+
+    {
         id: "Sunfire Castle",
         title: "王城決戦",
         times: [],
