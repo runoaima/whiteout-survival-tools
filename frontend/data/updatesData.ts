@@ -5,6 +5,16 @@ export type UpdateItem = {
 };
 
 export const updates: UpdateItem[] = [
+    
+    {
+        date: "2025-12-28",
+        title: "ツールとイベントページを追加",
+        details: [
+            "本日のイベントページを実装しました。",
+            "イベントカレンダーを実装しました。",
+            "火晶計算ツールをFC10まで追加。",
+        ],
+    },
     {
         date: "2025-12-26",
         title: "計算ツールを追加、改善",

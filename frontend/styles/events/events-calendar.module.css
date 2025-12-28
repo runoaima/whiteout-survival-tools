@@ -1,0 +1,128 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.monthNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.switch button {
+    margin-right: 6px;
+    padding: 6px 12px;
+    border-radius: 16px;
+}
+
+.active {
+    background: #2563eb;
+    color: white;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.week {
+    text-align: center;
+    font-weight: 700;
+}
+
+.dayCell {
+    min-height: 110px;
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+.out {
+    opacity: 0.4;
+}
+
+.dayNum {
+    font-size: 12px;
+}
+
+.eventBar {
+    font-size: 11px;
+    padding: 2px 6px;
+    margin-top: 3px;
+    border-radius: 6px;
+    color: white;
+}
+
+.dayPanel,
+.list {
+    margin-top: 16px;
+}
+
+.listItem,
+.dayItem {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalBody {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.dayCell {
+    border: 1px solid #e5e7eb;
+    min-height: 110px;
+    padding: 6px;
+    border-radius: 12px;
+    position: relative;
+}
+
+/* ✅ イベントバー（修正版） */
+.eventBar {
+    margin-top: 4px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    height: 12px;              /* ← 高さを固定 */
+    border-radius: 6px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.eventBar:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.eventBar:hover {
+    filter: brightness(1.1);
+}
