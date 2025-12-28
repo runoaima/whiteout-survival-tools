@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import {
-  loginWithEmail,
-  loginWithGoogle,
-} from "@/lib/auth";
+import { loginWithEmail, loginWithGoogle } from "@/lib/auth";
 import Style from "@/styles/login.module.css";
 
 export default function LoginPage() {
@@ -43,16 +40,14 @@ export default function LoginPage() {
         <input
           className={Style.input}
           type="email"
-          placeholder="あなたのメールアドレス"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-
         <label>パスワード</label>
         <input
+          className={Style.input}
           type="password"
-          placeholder="あなたのパスワード"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -82,7 +77,9 @@ export default function LoginPage() {
 
         <div className={Style.signup}>
           アカウントをお持ちでない方
-          <button>新規会員登録</button>
+          <button onClick={() => router.push("/signup")}>
+            新規会員登録
+          </button>
         </div>
       </div>
     </div>
