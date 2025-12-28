@@ -158,7 +158,7 @@ export default function TodayEventPanel() {
 
             <PageIntro
                 title="本日のイベント"
-                updatedAt="2025年12月28日15:39"
+                updatedAt="2025年12月28日17:24"
                 description="本日のイベント情報をコピーしやすい形式で表示します。"
                 toc={[
                     { label: "本日のイベント", targetId: "calendar" },
@@ -166,7 +166,7 @@ export default function TodayEventPanel() {
             />
             <main id="calendar" className={Style.main}>
                 <section id="fire-crystal" className={Style.section}>
-                    <div className={Style.sectionTitle}>火晶微粒子計算ツール</div>
+                    <div className={Style.sectionTitle}>本日のイベント</div>
                 </section>
                 <div className={Style.container}>
                     <div className={Style.card}>
