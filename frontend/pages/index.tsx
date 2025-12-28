@@ -107,6 +107,7 @@ export default function Home() {
                     <h2 className={styles.sectionTitle}>イベント攻略</h2>
                     <CategoryGrid
                         items={[
+                            { label: "本日のイベント", href: "/events/events-today", image: "/images/events/events-today.png" },
                             { label: "イベントカレンダー", href: "/events/events-calendar", image: "/images/events/events-calendar.png" },
                             { label: "過去イベント攻略", href: "/events/past-events" },
                         ]}

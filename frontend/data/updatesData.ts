@@ -5,10 +5,12 @@ export type UpdateItem = {
 };
 
 export const updates: UpdateItem[] = [
+    
     {
         date: "2025-12-28",
-        title: "イベントカレンダーを追加",
+        title: "イベント関連ページ追加",
         details: [
+            "本日のイベントページを実装しました。",
             "イベントカレンダーを実装しました。",
             "イベントの日程を確認できるカレンダーです。",
         ],
