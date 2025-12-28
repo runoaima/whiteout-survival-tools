@@ -1,0 +1,151 @@
+/* styles/events/today-events.module.css */
+
+.container {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 18px 14px 28px;
+}
+
+.card {
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+}
+
+.header {
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid #eef2f7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.sub {
+    font-size: 12px;
+    color: #64748b;
+    margin: 2px 0 0;
+}
+
+.body {
+    padding: 12px 16px 16px;
+}
+
+.pre {
+    background: #0b1220;
+    color: #e5e7eb;
+    border-radius: 12px;
+    padding: 14px 14px;
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 13px;
+    line-height: 1.55;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.footer {
+    padding: 12px 16px 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.copyBtn {
+    appearance: none;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #0f172a;
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.06s ease, box-shadow 0.12s ease, background 0.12s ease;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.copyBtn:hover {
+    background: #f8fafc;
+}
+
+.copyBtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.10);
+}
+
+.copied {
+    border-color: #2563eb;
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.hint {
+    font-size: 12px;
+    color: #64748b;
+    margin: 10px 0 0;
+}
+
+/* スマホ最適化 */
+@media (max-width: 520px) {
+    .container {
+        padding: 14px 10px 22px;
+    }
+
+    .header {
+        padding: 12px 12px 10px;
+    }
+
+    .body {
+        padding: 10px 12px 12px;
+    }
+
+    .footer {
+        padding: 10px 12px 12px;
+    }
+
+    .pre {
+        font-size: 12px;
+        padding: 12px;
+    }
+}
+
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+}
+
+.sectionTitle {
+    background: #4b3621;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.section p {
+    font-size: 12px;
+    color: var(--ws-text-sub);
+    margin-bottom: 14px;
+}
+
+.dateInput {
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 13px;
+    background: #fff;
+    color: #0f172a;
+}
