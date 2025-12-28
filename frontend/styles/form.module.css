@@ -8,9 +8,21 @@
     display: block;
 }
 
-.input,
-textarea,
-select {
+.input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.select {
     width: 100%;
     padding: 12px;
     border-radius: 8px;
