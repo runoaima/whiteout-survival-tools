@@ -117,6 +117,8 @@ export default function HeroGemTool() {
                             onChange={e => updateGem(i, "start", Number(e.target.value))}
                         />
 
+                        <br />
+
                         <label>希望Lv: {g.end}</label>
                         <input
                             type="range"
