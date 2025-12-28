@@ -52,10 +52,10 @@ export default function Home() {
                     <h2 className={styles.sectionTitle}>おすすめコンテンツ</h2>
                     <CategoryGrid
                         items={[
+                            { label: "本日のイベント", href: "/events/events-today", image: "/images/events/events-today.png" },
                             { label: "イベントカレンダー", href: "/events/events-calendar", image: "/images/events/events-calendar.png" },
-                            { label: "火晶計算ツール", href: "/tools/fire-crystal", image: "/images/home/fire-crystal-tool.png" },
-                            { label: "領主装備計算ツール", href: "/tools/chief-gear", image: "/images/home/chief-gear-tool.png" },
-                            { label: "行軍時間計算ツール", href: "/tools/march-time", image: "/images/home/march-time-tool.png" },
+                            { label: "火晶計算ツール", href: "/tools/fire-crystal", image: "/images/materials/fire_crystal/fire_crystal.png" },
+                            { label: "領主装備計算ツール", href: "/tools/chief-gear", image: "/images/materials/chief_gear/chief_gear.png" },
                         ]}
                     />
                 </section>
