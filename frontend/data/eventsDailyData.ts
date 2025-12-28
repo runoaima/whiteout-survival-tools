@@ -132,7 +132,7 @@ export const events: EventItem[] = [
         id: "Alliance Mobilization",
         title: "同盟争覇戦",
         times: [
-            { start: "左ルート 盾:80 槍:20 弓:0", end: "" },
+            { start: "左ルート 盾:60 槍:10 弓:30", end: "" },
             { start: "ペットバフ付けてエントリーしてね！", end: "" },
         ],
         repeat: {
