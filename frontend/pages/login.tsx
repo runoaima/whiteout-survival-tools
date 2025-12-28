@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { loginWithEmail, loginWithGoogle } from "@/lib/auth";
-import Style from "@/styles/login.module.css";
+import Style from "@/styles/login-form.module.css";
 
 export default function LoginPage() {
   const router = useRouter();
