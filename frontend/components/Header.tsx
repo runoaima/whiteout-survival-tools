@@ -20,8 +20,6 @@ export default function Header({ title }: { title: string }) {
 
         return () => unsubscribe();
     }, []);
-
-    // ✅ ここで必ず string を保証する
     const accountLink = user ? "/account" : "/login";
 
     return (
@@ -34,7 +32,6 @@ export default function Header({ title }: { title: string }) {
                 <div className={styles.right}>
                     <button className={styles.icon}>🔍</button>
 
-                    {/* ← ここが重要 */}
                     <Link href={accountLink} className={styles.icon}>
                         👤
                     </Link>

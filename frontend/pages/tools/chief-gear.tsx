@@ -8,9 +8,7 @@ import Footer from "@/components/Footer";
 
 const Header = dynamic(() => import("@/components/Header"), { ssr: false });
 
-/* ===============================
-   定数データ（FireCrystalと同思想）
-================================ */
+/* 定数データ*/
 const materialKeys = ["合金", "研磨剤", "設計図面", "月光琥珀"] as const;
 type MaterialKey = typeof materialKeys[number];
 
@@ -29,7 +27,7 @@ const rankLabels = [
     "神話T3", "神話T3(☆1)", "神話T3(☆2)", "神話T3(☆3)"
 ];
 
-/* level → 素材テーブル（FireCrystalと同構造） */
+/* level → 素材テーブル */
 type MaterialTable = Record<number, string[]>;
 
 const materialTable: MaterialTable = {
@@ -77,9 +75,7 @@ const materialTable: MaterialTable = {
     41: ["合金×86000", "研磨剤×1070", "設計図面×180", "月光琥珀×25"]
 };
 
-/* ===============================
-   コンポーネント
-================================ */
+/* コンポーネント */
 export default function ChiefGearTool() {
 
     /* FireCrystalと同じlevels構造 */
@@ -87,7 +83,7 @@ export default function ChiefGearTool() {
         setNames.map(() => ({ start: 0, end: 0 }))
     );
 
-    /* LevelSelector（完全共通） */
+    /* LevelSelector */
     function LevelSelector({
         value,
         onChange,
@@ -116,9 +112,7 @@ export default function ChiefGearTool() {
         );
     }
 
-    /* ===============================
-       計算（FireCrystal完全一致）
-    ================================ */
+    /*  計算 */
     const totalsPerSet = setNames.map(() => ({
         合金: 0, 研磨剤: 0, 設計図面: 0, 月光琥珀: 0
     }));
@@ -140,9 +134,7 @@ export default function ChiefGearTool() {
         }
     });
 
-    /* ===============================
-       JSX
-    ================================ */
+    /* JSX */
     return (
         <>
             <Header title="Whiteout Survival" />

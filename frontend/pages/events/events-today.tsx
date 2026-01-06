@@ -10,9 +10,7 @@ import Footer from "@/components/Footer";
 
 
 
-/* =========================
-   Utils
-========================= */
+/* Utils */
 
 const ymd = (d: Date) => {
     const y = d.getFullYear();
@@ -73,9 +71,7 @@ function isMatchDate(event: EventItem, date: Date) {
 }
 
 
-/* =========================
-   Component
-========================= */
+/* Component */
 
 export default function TodayEventPanel() {
     const [selectedDate, setSelectedDate] = useState(ymd(new Date()));

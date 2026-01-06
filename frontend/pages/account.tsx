@@ -9,7 +9,7 @@ export default function AccountPage() {
     const { user, loading } = useAuth();
     const router = useRouter();
 
-    // ✅ 未ログインならログイン画面へ
+    // 未ログインならログイン画面へ
     useEffect(() => {
         if (!loading && !user) {
             router.replace("/login");

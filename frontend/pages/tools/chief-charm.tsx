@@ -8,9 +8,7 @@ import Footer from "@/components/Footer";
 
 const Header = dynamic(() => import("@/components/Header"), { ssr: false });
 
-/* ===============================
-   定数
-================================ */
+/* 定数 */
 const materialKeys = ["追加ステータス", "ハンドブック", "宝石図面", "宝石秘典"] as const;
 type MaterialKey = typeof materialKeys[number];
 
@@ -35,9 +33,7 @@ const materialTable: MaterialTable = {
     16:["追加ステータス×9", "ハンドブック×650", "宝石図面×550", "宝石秘典×100"],
 };
 
-/* ===============================
-   Component
-================================ */
+/* Componen */
 type Gem = { start: number; end: number };
 
 export default function HeroGemTool() {
@@ -62,9 +58,7 @@ export default function HeroGemTool() {
         setGems(prev => (prev.length > 1 ? prev.slice(0, -1) : prev));
     }
 
-    /* ===============================
-       計算（FireCrystal完全一致）
-    ================================ */
+    /* 計算（FireCrystal完全一致） */
     const totalsPerSet = gems.map(() => ({
         追加ステータス: 0, ハンドブック: 0, 宝石図面: 0, 宝石秘典: 0
     }));

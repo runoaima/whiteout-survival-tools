@@ -8,9 +8,7 @@ import Footer from "@/components/Footer";
 
 const Header = dynamic(() => import("@/components/Header"), { ssr: false });
 
-/* ===============================
-   定数・型
-=============================== */
+/* 定数・型 */
 
 const PIECES_PER_STAR = 6;
 

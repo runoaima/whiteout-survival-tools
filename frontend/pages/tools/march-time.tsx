@@ -47,10 +47,7 @@ function toJST(d: Date) {
     return new Date(d.getTime() + JST_OFFSET);
 }
 
-/**
- * arrivalTime (UTCのHH:MM:SS) を、今日or明日の "実到着Date(UTC基準)" にする
- * - いま(オフセット反映後)より過去なら翌日に繰り上げ
- */
+
 function buildArrivalDateUTC(arrivalTime: string, nowAdjustedMs: number): Date {
     const { h, m, s } = parseHHMMSS(arrivalTime);
     const base = new Date(nowAdjustedMs);
@@ -64,9 +61,6 @@ function buildArrivalDateUTC(arrivalTime: string, nowAdjustedMs: number): Date {
     return arrival;
 }
 
-/**
- * スタート時刻 = 到着 - 集結 - 行軍
- */
 function calcStartDateUTC(
     arrivalDateUTC: Date,
     gatheringMin: number,

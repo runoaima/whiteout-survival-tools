@@ -1,7 +1,3 @@
-// ==============================
-// イベント繰り返しルール定義
-// ==============================
-
 export type RepeatRule =
     | {
         type: "once";
@@ -9,22 +5,22 @@ export type RepeatRule =
     }
     | {
         type: "daily";
-        startDate: string;   // ← 追加（開始日）
-        interval: number;    // 何日ごと
+        startDate: string;   
+        interval: number;    
         until?: string;
         excludeDates?: string[];
     }
     | {
         type: "weekly";
-        startDate: string;   // ← 追加
-        interval: number;    // 何週ごと
+        startDate: string; 
+        interval: number;    
         weekdays: number[];
         until?: string;
         excludeDates?: string[];
     }
     | {
         type: "monthly";
-        startDate: string;   // ← 追加
+        startDate: string; 
         interval: number;
         day: number;
         until?: string;
@@ -32,31 +28,17 @@ export type RepeatRule =
     };
 
 
-
-// ==============================
-// 時間帯（1イベントに複数設定可）
-// ==============================
 export type TimeRange = {
-    start: string; // "18:00"
-    end: string;   // "23:00"
+    start: string;
+    end: string;  
 };
 
-
-// ==============================
-// イベント本体
-// ==============================
 export type EventItem = {
-    id: string;              // 一意ID
-    title: string;           // 表示名
-    description?: string;    // 説明（任意）
-
-    /** 1日に複数時間帯を持てる */
+    id: string;              
+    title: string;           
+    description?: string;    
     times: TimeRange[];
-
-    /** 繰り返しルール */
     repeat: RepeatRule;
-
-    /** 表示色 */
     color?: string;
 };
 

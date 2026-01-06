@@ -10,7 +10,7 @@ export default function AccountSettings() {
             <Header title="アカウント設定" />
 
             <div className={Style.container}>
-                {/* ===== プロフィール ===== */}
+                {/* プロフィール */}
                 <h1 className={Style.title}>プロフィール変更</h1>
 
                 <div className={Style.section}>
@@ -51,7 +51,7 @@ export default function AccountSettings() {
                     </div>
                 </div>
 
-                {/* ===== アカウント設定 ===== */}
+                {/* アカウント設定 */}
                 <h2 className={Style.subtitle}>アカウント設定</h2>
 
                 <div className={Style.section}>

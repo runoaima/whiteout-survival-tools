@@ -1,5 +1,3 @@
-// data/eventsData.ts
-
 export type RepeatRule =
     | {
         type: "once";

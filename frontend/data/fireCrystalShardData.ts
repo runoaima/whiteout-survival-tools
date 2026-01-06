@@ -1,21 +1,3 @@
-// src/data/heroSkillData.ts
-
-/**
- * =================================================
- * 🔧 スキルツリー設定ファイル（最重要）
- * =================================================
- *
- * ここでできること：
- * ✔ 表示名の変更（label）
- * ✔ 最大Lv変更（maxLevel）
- * ✔ Lvごとの素材数変更（materials）
- * ✔ 上位 / 下位スキル依存の変更（parent / children）
- * ✔ ノード配置の変更（layout）
- *
- * 👉 page.tsx はこの構造に完全依存
- * 👉 ゲーム側仕様変更が来てもここだけ修正
- */
-
 /** スキルID（ボタンIDとCSSクラス名を兼ねる） */
 export type SkillId =
     | "healing"
@@ -47,16 +29,10 @@ export const MATERIAL_KEYS: MaterialKey[] = [
     "鉄鉱",
 ];
 
-/**
- * Lvごとの素材テーブル
- * - 各配列の index 0 が Lv1、index 1 が Lv2 … に対応
- * - 配列の長さは maxLevel と一致させる（重要）
- */
+/** Lvごとの素材テーブル */
 export type MaterialsPerLevel = Record<MaterialKey, number[]>;
 
-/**
- * スキル1つ分の定義
- */
+/* スキル1つ分の定義 */
 export type SkillConfig = {
     label: string; // 表示名
     maxLevel: number; // 最大Lv
@@ -65,10 +41,8 @@ export type SkillConfig = {
     children?: SkillId[]; // 下位スキル（複数可）
 };
 
-/**
- * =================================================
+/*
  * ノードの配置（画像の雰囲気に合わせた例）
- * =================================================
  * - x,y は「%」で指定（レスポンシブに強い）
  * - ここを調整すれば画像と同じ配置に寄せられる
  */
@@ -97,19 +71,13 @@ export const NODE_LAYOUT: Record<
     squad: { xPct: 50, yPct: 90 },
 };
 
-/**
- * =================================================
+/*
  * スキル定義本体（あなたのデータを踏襲）
- * =================================================
- *
- * ✅ あとで数値を変更するのはここだけ
- * ✅ maxLevel と 各素材配列の長さを一致させる
  */
 export const SKILL_CONFIG: Record<SkillId, SkillConfig> = {
     healing: {
         label: "烈日治癒",
         maxLevel: 10,
-        // 🔧 ここに「Lv1..Lv10」の素材を入れる（例はダミー）
         materials: {
             火晶微粒子: [10, 10, 12, 12, 14, 14, 16, 16, 18, 20],
             鋼材: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

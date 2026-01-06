@@ -1,7 +1,3 @@
-/* =====================================
-   領主装備 強化・製錬 データ
-===================================== */
-
 export const materialKeys = [
     "エナジー石",
     "ミスリル",
@@ -13,9 +9,6 @@ export type MaterialKey = typeof materialKeys[number];
 
 export type MaterialTable = Record<number, string[]>;
 
-/* -------------------------------
-   強化レベル（1〜200）
--------------------------------- */
 export const enhanceMaterialTable: MaterialTable = {
     1: ["エナジー石×0", "ミスリル×0", "必要経験値×10", "レジェンド装備×0"],
     2: ["エナジー石×0", "ミスリル×0", "必要経験値×15", "レジェンド装備×0"],
@@ -219,9 +212,7 @@ export const enhanceMaterialTable: MaterialTable = {
     200: ["エナジー石×0", "ミスリル×50", "必要経験値×0", "レジェンド装備×10"]
 };
 
-/* -------------------------------
-   製錬レベル（1〜20）
--------------------------------- */
+/*  製錬レベル（1〜20） */
 export const refineMaterialTable: MaterialTable = {
     1: ["エナジー石×10", "ミスリル×0", "必要経験値×0", "レジェンド装備×0"],
     2: ["エナジー石×20", "ミスリル×0", "必要経験値×0", "レジェンド装備×0"],
@@ -245,8 +236,6 @@ export const refineMaterialTable: MaterialTable = {
     20: ["エナジー石×200", "ミスリル×0", "必要経験値×0", "レジェンド装備×10"]
 };
 
-/* -------------------------------
-   上限定数（UI制御用）
--------------------------------- */
+/* 上限定数（UI制御用） */
 export const ENHANCE_MAX_LEVEL = 200;
 export const REFINE_MAX_LEVEL = 20;

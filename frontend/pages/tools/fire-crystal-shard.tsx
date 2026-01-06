@@ -13,9 +13,7 @@ import CategoryTextNav from "@/components/CategoryTextNav";
 import PageIntro from "@/components/PageIntro";
 import Footer from "@/components/Footer";
 
-/* ===============================
-   共通ユーティリティ
-=============================== */
+/* 共通ユーティリティ */
 
 function emptyTotals(): Record<MaterialKey, number> {
     return MATERIAL_KEYS.reduce((a, k) => {
@@ -24,9 +22,7 @@ function emptyTotals(): Record<MaterialKey, number> {
     }, {} as Record<MaterialKey, number>);
 }
 
-/* ===============================
-   素材計算
-=============================== */
+/* 素材計算 */
 function calcSkillMaterials(skillId: SkillId, lv: number) {
     const cfg = SKILL_CONFIG[skillId];
     const t = emptyTotals();
@@ -39,9 +35,7 @@ function calcSkillMaterials(skillId: SkillId, lv: number) {
 }
 
 
-/* ===============================
-   レベル適用ルール（★重要）
-=============================== */
+/* レベル適用ルール */
 function applySetLevel(
     prev: Record<SkillId, number>,
     skillId: SkillId,
@@ -49,16 +43,9 @@ function applySetLevel(
 ) {
     const next = { ...prev };
     const cfg = SKILL_CONFIG[skillId];
-
-    // 範囲内に丸める
     const clamped = Math.max(0, Math.min(cfg.maxLevel, nextLevel));
     next[skillId] = clamped;
 
-    /**
-     * 🔥 確定仕様
-     * 上位ノードを Lv1 以上にした瞬間、
-     * その children はすべて MAX
-     */
     if (clamped >= 1 && cfg.children) {
         cfg.children.forEach(child => {
             next[child] = SKILL_CONFIG[child].maxLevel;
@@ -69,9 +56,7 @@ function applySetLevel(
 }
 
 
-/* ===============================
-   ポップアップ
-=============================== */
+/* ポップアップ */
 function LevelPopup({
     skillId,
     current,
@@ -119,9 +104,7 @@ function LevelPopup({
 }
 
 
-/* ===============================
-   メイン
-=============================== */
+/* メイン */
 export default function HeroSkillTool() {
     const [levels, setLevels] = useState<Record<SkillId, number>>(() => {
         const init = {} as Record<SkillId, number>;
@@ -131,14 +114,14 @@ export default function HeroSkillTool() {
 
     const [popup, setPopup] = useState<SkillId | null>(null);
 
-    /* ===== リセット ===== */
+    /* リセット */
     function resetAll() {
         const reset = {} as Record<SkillId, number>;
         (Object.keys(SKILL_CONFIG) as SkillId[]).forEach(id => (reset[id] = 0));
         setLevels(reset);
     }
 
-    /* ===== 計算 ===== */
+    /* 計算 */
     const perNode = useMemo(() => {
         const r: Record<SkillId, Record<MaterialKey, number>> = {} as any;
         (Object.keys(SKILL_CONFIG) as SkillId[]).forEach(id => {
@@ -155,7 +138,7 @@ export default function HeroSkillTool() {
         return t;
     }, [perNode]);
 
-    /* ===== 線 ===== */
+    /* 線 */
     const edges = useMemo(() => {
         const list: { from: SkillId; to: SkillId }[] = [];
         (Object.keys(SKILL_CONFIG) as SkillId[]).forEach(id => {
@@ -236,14 +219,14 @@ export default function HeroSkillTool() {
                         })}
                     </div>
 
-                    {/* ===== リセットボタン ===== */}
+                    {/* リセットボタン */}
                     <div className={Style.resetWrap}>
                         <button className={Style.resetButton} onClick={resetAll}>
                             全てリセット
                         </button>
                     </div>
 
-                    {/* ===== 表 ===== */}
+                    {/* 表 */}
                     <section className={Style.section}>
                         <div className={Style.sectionTitle}>必要素材一覧</div>
                         <div className={Style.tableWrap}>

@@ -7,9 +7,7 @@ import PageHero from "@/components/PageHero";
 import CategoryTextNav from "@/components/CategoryTextNav";
 import PageIntro from "@/components/PageIntro";
 
-/* =========================
-    型
-========================= */
+/* 型*/
 type Mode = "month" | "day";
 
 type ExpandedEvent = {
@@ -27,9 +25,7 @@ type MergedEvent = {
     color?: string;
 };
 
-/* =========================
-    Utils
-========================= */
+/* Utils */
 
 const ymd = (d: Date) => d.toISOString().slice(0, 10);
 
@@ -58,9 +54,7 @@ function buildMonth(base: Date) {
     return days;
 }
 
-/* =========================
-    繰り返し展開
-========================= */
+/* 繰り返し展開 */
 function expandEvents(
     events: EventItem[],
     rangeStart: Date,
@@ -142,9 +136,7 @@ function expandEvents(
     return result;
 }
 
-/* =========================
-    連続イベント結合
-========================= */
+/* 連続イベント結合 */
 function mergeContinuous(events: ExpandedEvent[]): MergedEvent[] {
     const map = new Map<string, ExpandedEvent[]>();
 
@@ -182,9 +174,7 @@ function mergeContinuous(events: ExpandedEvent[]): MergedEvent[] {
     return result;
 }
 
-/* =========================
-    Main
-========================= */
+/* Main */
 export default function EventsCalendar() {
     const [baseDate, setBaseDate] = useState(new Date());
 

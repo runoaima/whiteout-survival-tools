@@ -15,9 +15,7 @@ import {
     MaterialKey,
 } from "@/data/heroGearData";
 
-/* ===============================
-   型定義
-=============================== */
+/*  型定義 */
 type GearState = {
     start: number;
     end: number;
@@ -26,9 +24,7 @@ type GearState = {
 };
 
 export default function HeroGearEnhance() {
-    /* ===============================
-       State
-    =============================== */
+    /* State */
     const [gears, setGears] = useState<GearState[]>([
         {
             start: 0,
@@ -38,9 +34,7 @@ export default function HeroGearEnhance() {
         },
     ]);
 
-    /* ===============================
-       装備追加・削除
-    =============================== */
+    /* 装備追加・削除 */
     const addGear = () => {
         setGears(prev => [
             ...prev,
@@ -57,9 +51,7 @@ export default function HeroGearEnhance() {
         setGears(prev => (prev.length > 1 ? prev.slice(0, -1) : prev));
     };
 
-    /* ===============================
-       値変更
-    =============================== */
+    /* 値変更 */
     const updateGear = (
         index: number,
         key: keyof GearState,
@@ -72,10 +64,7 @@ export default function HeroGearEnhance() {
         );
     };
 
-    /* ===============================
-       計算処理（useMemo）
-       ※ useEffect + setState は使わない
-    =============================== */
+    /* 計算処理  */
     const { resultHtml, hasMaterial } = useMemo(() => {
         // 装備ごとの合計
         const totalsPerSet: Record<MaterialKey, number>[] = gears.map(() => {
@@ -142,9 +131,7 @@ export default function HeroGearEnhance() {
         return { resultHtml: html, hasMaterial };
     }, [gears]);
 
-    /* ===============================
-       JSX
-    =============================== */
+    /* JSX */
     return (
         <>
             <Header title="Whiteout Survival" />

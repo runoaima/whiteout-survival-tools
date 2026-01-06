@@ -83,9 +83,6 @@
     overflow-x: auto;
 }
 
-/* =====================================
-   Result Title（必要素材一覧）
-===================================== */
 .resultTitle {
     display: flex;
     align-items: center;
@@ -100,7 +97,6 @@
     border-radius: 8px;
 }
 
-/* 左のアクセント丸（高級感） */
 .resultTitle::before {
     content: "";
     width: 6px;
